@@ -243,6 +243,28 @@ def verify(run: Path, spec: dict | None = None) -> None:
     (run / "verify.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
 
 
+def recheck(run: Path, spec: dict, timeout_s: int) -> None:
+    """Run again, one at a time with a longer limit, only the programs whose first check timed out, and write the new
+    result in place (the old one is kept as `first_timeout`). A timeout depends on how busy the machine was; the
+    verdict should not (2026-10-08: the same 151 prompts timed out 20 times, then 3 times, under different load)."""
+    global TIMEOUT_S
+    TIMEOUT_S = timeout_s
+    rows = [json.loads(l) for l in (run / "verify.jsonl").read_text(encoding="utf-8").splitlines()]
+    for r in rows:
+        if r["stage"] != "timeout":
+            continue
+        res = run_program((run / "code" / f"{r['id']}.py").read_text(encoding="utf-8"))
+        exp = (spec or {}).get(r["id"], {}).get("bbox")
+        if res["stage"] == "ok" and exp:
+            res["dims"] = "match" if dims_close(res["bbox"], exp) else "mismatch"
+            res["expected_bbox"] = exp
+        res.update(id=r["id"], first_timeout=True, recheck_timeout_s=timeout_s)
+        r.clear()
+        r.update(res)
+        print(r["id"], r["stage"], r.get("dims", ""))
+    (run / "verify.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+
+
 def repair(run: Path) -> None:
     meta = json.loads((run / "meta.json").read_text(encoding="utf-8"))
     style = meta["tag"].split(":")[0]
@@ -308,6 +330,8 @@ def main() -> int:
         fetch(sys.argv[2])
     elif cmd == "verify":
         verify(Path(sys.argv[2]), load_spec(sys.argv[3] if len(sys.argv) > 3 else None))
+    elif cmd == "recheck":  # recheck runs/<batch> runs/<spec>/spec.json [seconds]
+        recheck(Path(sys.argv[2]), load_spec(sys.argv[3]), int(sys.argv[4]) if len(sys.argv) > 4 else 180)
     elif cmd == "repair":
         repair(Path(sys.argv[2]))
     elif cmd == "report":
@@ -325,6 +349,15 @@ def main() -> int:
         ids = [i for i, _ in prompts("pro", None)]
         assert len(ids) == len(set(ids)) == 151, (len(ids), len(set(ids)))
         assert dims_close([30, 10, 20], [10.1, 20, 29.5]) and not dims_close([10, 20, 30], [10, 20, 40])
+        global TIMEOUT_S
+        slow = "import cadquery as cq\nfor i in range(30000000):\n    pass\nresult = cq.Workplane().box(1, 1, 1)"
+        TIMEOUT_S = 1
+        short = run_program(slow)["stage"]
+        TIMEOUT_S = 120
+        long_ = run_program(slow)["stage"]
+        TIMEOUT_S = 60
+        print(f"timeout knob: 1 s -> {short}, 120 s -> {long_}")
+        assert (short, long_) == ("timeout", "ok"), (short, long_)
         with tempfile.TemporaryDirectory() as t:
             s = Path(t) / "spec"
             s.mkdir()
