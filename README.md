@@ -4,7 +4,7 @@ How often does a frontier LLM write CAD code that runs, and how often does the p
 And does one round of feedback from a verifier fix what it gets wrong?
 
 This repo measures both on the public preview of Text2CAD-Bench, with a model writing CadQuery (Python) code
-through the Anthropic Message Batches API.
+through the Anthropic Message Batches API. One-page summary: [docs/case_study.md](docs/case_study.md).
 
 ## What is measured
 
