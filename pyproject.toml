@@ -1,0 +1,9 @@
+[project]
+name = "text2cad-verifier"
+version = "0.1.0"
+description = "Text-to-CadQuery with an execution verifier on the public Text2CAD-Bench preview"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.12.1",
+    "cadquery>=2.8.0",
+]
