@@ -1,0 +1,11 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32000.0, "bbox": [100.0, 20.0, 40.0], "faces": 8, "id": "L1_27", "dims": "match", "expected_bbox": [20.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 5, "valid": true, "volume": 32826.048, "bbox": [50.0, 50.0, 50.0], "faces": 30, "id": "L2_1", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 180623.685, "bbox": [60.0, 60.0, 60.0], "faces": 8, "id": "L2_35", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 39525.154, "bbox": [30.0, 29.983, 60.0], "faces": 5642, "id": "L2_40", "dims": "match", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 52398.416, "bbox": [40.0, 40.0, 60.0], "faces": 28, "id": "L2_41", "dims": "match", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 23969.944, "bbox": [45.0, 45.0, 100.0], "faces": 8, "id": "L2_45", "dims": "match", "expected_bbox": [45.0, 45.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 124717.515, "bbox": [102.0, 282.843, 282.843], "faces": 3, "id": "L3_1", "dims": "match", "expected_bbox": [100.0, 282.84, 282.84]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 250339.914, "bbox": [80.0, 80.0, 60.0], "faces": 366, "id": "L3_12", "dims": "match", "expected_bbox": [60.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 136637.316, "bbox": [120.0, 120.0, 40.0], "faces": 204, "dims": "match", "expected_bbox": [40.0, 120.0, 120.0], "id": "L3_24", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L3_6", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 594392.246, "bbox": [80.012, 80.0, 150.0], "faces": 3, "id": "L3_9", "dims": "match", "expected_bbox": [80.0, 80.0, 150.0]}

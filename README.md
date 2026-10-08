@@ -46,9 +46,34 @@ The API key is read from `%USERPROFILE%/.anthropic/text2cad_api.env` and passed 
 runs on your machine: the allow-list blocks every import except `cadquery` and `math`, and the builtins that reach
 files, the OS or dynamic code. Read `safety_problem()` in `t2c.py` before running other people's outputs.
 
-## Results
+## Results (2026-10-08, model `claude-opus-5-5`, 151 prompts per run)
 
-Filled in from the run below; every number has its batch id.
+Expected sizes: 132 of 151 parts got a size from both descriptions, and the two readings agreed on 120 (spec batch
+`msgbatch_01JJL4qEqYR94drqWV24gQ5h`). A hand check of six agreed sizes, two per level, found all six right.
+
+| Run | Prompt style | Batch | Programs that fail to run or give no valid solid | Size mismatches (of parts with an agreed size that ran) |
+|---|---|---|---|---|
+| Generation | pro | `msgbatch_01YGeeSyynmt9bEaZ4rVMQMi` | 4 | 3 of 117 |
+| Same prompts again (noise) | pro | `msgbatch_01N7DeL55NxFdKBFA4uaTa3G` | 6 | 2 of 114 |
+| Generation | geo | `msgbatch_017JfqoG4M6iuL9JMLdEax74` | 3 | 8 of 117 |
+| After one repair round | pro | repair `msgbatch_01S9gvp5FtKNt7SGdmfywLgm` (7 sent) | 1 | 0 of 119 |
+| After one repair round | geo | repair `msgbatch_01RPo71YiG8cP8mAhgQF1BfT` (11 sent) | 1 | 0 of 119 |
+
+- **Noise.** The same 151 prompts, generated twice, differ by 2 run failures and 1 size mismatch. One repair round
+  took the failures from 7 to 1 (pro) and from 11 to 1 (geo), well outside that.
+- **By level.** L1 (60 simple parts) almost never fails; what fails is L2 and L3 (sweeps, lofts, patterns).
+- **Timeouts were the machine, not the model.** The first checks ran while another job held the CPU: 66 programs
+  timed out at 60 s, and 64 of them ran fine when re-run alone with a 180 s limit (`t2c.py recheck`). The table uses
+  the re-run results; a run that still timed out at 180 s counts as a failure.
+- **Cost.** 7 batches, about 0.30 M input and 0.45 M output tokens, about $5 at Batch API prices.
+- **Files.** `results/<batch id>/` holds each run's generated programs, `verify.jsonl` (one row per program) and
+  usage; the spec batch holds `spec.json`. `uv run python t2c.py report results/<generation> results/<repair>`
+  reproduces the table without any API call.
+
+What the repair numbers do and do not show: the size feedback told the model the expected box, so a size match
+after repair is measured by the same check that guided it. It shows the model can act on the feedback, not that the
+repaired part is right in every other feature. A run failure fixed after repair is a stronger signal, because the
+feedback only quoted the error.
 
 ## Limits
 
@@ -56,4 +81,6 @@ Filled in from the run below; every number has its batch id.
 - The expected size is a model's reading of the text, not a measurement. Agreement between two separately written
   descriptions makes a misreading less likely, not impossible. A hand check of six agreed sizes, two per level,
   found all six right (seed 20261008).
-- One generation per prompt. Run-to-run variation is not yet measured beyond the repeat pairs noted in Results.
+- One repeat run (pro style) measures the noise; geo has no repeat.
+- No ground-truth geometry: the benchmark's STEP files are not public, so neither IoU nor Chamfer distance is reported.
+- A run that timed out depends on the machine; the 180 s re-run is this repo's rule, not the benchmark's.

@@ -1,0 +1,7 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 77257.36, "bbox": [90.0, 90.0, 47.913], "faces": 14, "id": "L2_16", "dims": "match", "expected_bbox": [47.905, 90.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 180623.615, "bbox": [60.0, 60.0, 60.0], "faces": 8, "id": "L2_35", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 54285.142, "bbox": [30.0, 30.0, 80.0], "faces": 10, "id": "L2_6", "dims": "match", "expected_bbox": [30.0, 30.0, 80.0]}
+{"stage": "geometry", "solids": 2, "valid": false, "volume": 251315.565, "bbox": [82.245, 80.0, 60.0], "faces": 26, "error": "shape is not valid (BRepCheck)", "id": "L3_12"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 23815.445, "bbox": [80.0, 80.0, 45.0], "faces": 171, "id": "L3_22"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 9528.706, "bbox": [87.251, 86.501, 41.726], "faces": 6, "id": "L3_29", "dims": "match", "expected_bbox": [41.35, 86.5, 87.275]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 590518.37, "bbox": [80.0, 80.0, 150.0], "faces": 4, "id": "L3_9", "dims": "match", "expected_bbox": [80.0, 80.0, 150.0]}

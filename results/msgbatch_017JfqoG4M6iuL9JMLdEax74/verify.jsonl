@@ -1,0 +1,151 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36680.912, "bbox": [57.735, 50.0, 20.0], "faces": 15, "id": "L1_1", "dims": "match", "expected_bbox": [20.0, 50.0, 57.735]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120000.0, "bbox": [100.0, 50.0, 30.0], "faces": 10, "id": "L1_10", "dims": "match", "expected_bbox": [30.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 109955.743, "bbox": [60.0, 60.0, 40.0], "faces": 4, "id": "L1_11", "dims": "match", "expected_bbox": [40.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 81925.877, "bbox": [90.0, 90.0, 15.0], "faces": 7, "id": "L1_12", "dims": "match", "expected_bbox": [15.0, 90.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 35032.445, "bbox": [80.0, 20.0, 50.0], "faces": 5, "id": "L1_13", "dims": "match", "expected_bbox": [20.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 65449.847, "bbox": [50.0, 50.0, 60.0], "faces": 3, "id": "L1_14", "dims": "match", "expected_bbox": [50.0, 50.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 124437.5, "bbox": [50.0, 50.0, 50.0], "faces": 7, "id": "L1_15", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 46429.204, "bbox": [120.0, 40.0, 10.0], "faces": 8, "id": "L1_16", "dims": "match", "expected_bbox": [10.0, 40.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 23433.629, "bbox": [60.0, 30.0, 20.0], "faces": 8, "id": "L1_17", "dims": "match", "expected_bbox": [20.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 56548.668, "bbox": [90.0, 30.0, 30.0], "faces": 3, "id": "L1_18", "dims": "match", "expected_bbox": [30.0, 30.0, 90.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 62831.853, "bbox": [80.0, 80.0, 20.0], "faces": 8, "id": "L1_19", "dims": "match", "expected_bbox": [20.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 91891.585, "bbox": [120.0, 40.0, 40.0], "faces": 4, "id": "L1_2", "dims": "match", "expected_bbox": [40.0, 40.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 56000.0, "bbox": [80.0, 40.0, 30.0], "faces": 6, "id": "L1_20", "dims": "match", "expected_bbox": [30.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 150011.049, "bbox": [50.0, 50.0, 80.0], "faces": 7, "id": "L1_21", "dims": "match", "expected_bbox": [50.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 66575.222, "bbox": [60.0, 60.0, 30.0], "faces": 7, "id": "L1_22", "dims": "match", "expected_bbox": [30.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 133517.688, "bbox": [80.0, 50.0, 50.0], "faces": 7, "id": "L1_23", "dims": "match", "expected_bbox": [50.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 40000.0, "bbox": [50.0, 40.0, 60.0], "faces": 8, "id": "L1_24", "dims": "match", "expected_bbox": [40.0, 50.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 44767.695, "bbox": [40.0, 40.0, 40.0], "faces": 6, "id": "L1_25", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 95425.877, "bbox": [60.0, 60.0, 45.0], "faces": 2, "id": "L1_26", "dims": "match", "expected_bbox": [45.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 28000.0, "bbox": [100.0, 20.0, 30.0], "faces": 8, "id": "L1_27", "dims": "mismatch", "expected_bbox": [20.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 97295.969, "bbox": [60.0, 60.0, 60.0], "faces": 7, "dims": "match", "expected_bbox": [60.0, 60.0, 60.0], "id": "L1_28", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 43982.297, "bbox": [60.0, 60.0, 30.0], "faces": 7, "id": "L1_29", "dims": "match", "expected_bbox": [30.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 109292.037, "bbox": [50.0, 50.0, 50.0], "faces": 7, "id": "L1_3", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 40088.538, "bbox": [30.0, 30.0, 60.0], "faces": 4, "id": "L1_30", "dims": "match", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 46560.356, "bbox": [50.0, 50.0, 45.826], "faces": 5, "id": "L1_31", "dims": "match", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 119666.667, "bbox": [80.0, 50.0, 30.0], "faces": 8, "id": "L1_32", "dims": "match", "expected_bbox": [30.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 78539.816, "bbox": [100.0, 60.0, 30.0], "faces": 6, "dims": "match", "expected_bbox": [30.0, 60.0, 100.0], "id": "L1_33", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 180000.0, "bbox": [100.0, 60.0, 40.0], "faces": 10, "dims": "match", "expected_bbox": [40.0, 60.0, 100.0], "id": "L1_34", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 46731.191, "bbox": [40.0, 40.0, 40.0], "faces": 4, "id": "L1_35", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 75398.224, "bbox": [80.0, 80.0, 20.0], "faces": 4, "id": "L1_36", "dims": "match", "expected_bbox": [20.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 67919.106, "bbox": [80.0, 80.0, 15.0], "faces": 15, "id": "L1_37", "dims": "match", "expected_bbox": [15.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 72000.0, "bbox": [60.0, 30.0, 80.0], "faces": 6, "id": "L1_38", "dims": "match", "expected_bbox": [30.0, 60.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 30283.185, "bbox": [80.0, 40.0, 10.0], "faces": 6, "id": "L1_39", "dims": "match", "expected_bbox": [10.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 138230.077, "bbox": [80.0, 80.0, 50.0], "faces": 5, "dims": "match", "expected_bbox": [50.0, 80.0, 80.0], "id": "L1_4", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 31808.626, "bbox": [30.0, 30.0, 60.0], "faces": 7, "dims": "match", "expected_bbox": [30.0, 30.0, 60.0], "id": "L1_40", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 75398.224, "bbox": [100.0, 100.0, 10.0], "faces": 7, "dims": "match", "expected_bbox": [10.0, 100.0, 100.0], "id": "L1_41", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 29221.344, "bbox": [30.0, 30.0, 50.0], "faces": 3, "id": "L1_42", "dims": "match", "expected_bbox": [30.0, 30.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90000.0, "bbox": [100.0, 50.0, 30.0], "faces": 10, "id": "L1_43", "dims": "match", "expected_bbox": [30.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 47506.639, "bbox": [40.0, 40.0, 40.0], "faces": 9, "dims": "match", "expected_bbox": [40.0, 40.0, 40.0], "id": "L1_44", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 127758.101, "bbox": [100.0, 100.0, 50.0], "faces": 3, "dims": "match", "expected_bbox": [50.0, 100.0, 100.0], "id": "L1_45", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36000.0, "bbox": [30.0, 40.0, 60.0], "faces": 5, "id": "L1_46", "dims": "match", "expected_bbox": [30.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 98713.782, "bbox": [40.0, 40.0, 80.0], "faces": 8, "dims": "match", "expected_bbox": [39.68, 40.0, 80.0], "id": "L1_47", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 38283.185, "bbox": [40.0, 40.0, 40.0], "faces": 8, "id": "L1_48", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 55989.436, "bbox": [40.0, 40.0, 40.0], "faces": 12, "id": "L1_49", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 71342.917, "bbox": [60.0, 60.0, 60.0], "faces": 8, "id": "L1_5", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 30082.593, "bbox": [60.0, 20.0, 60.0], "faces": 6, "id": "L1_50", "dims": "match", "expected_bbox": [20.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 26814.96, "bbox": [58.333, 60.0, 10.0], "faces": 4, "id": "L1_51"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27694.779, "bbox": [120.0, 50.0, 6.0], "faces": 14, "dims": "match", "expected_bbox": [6.0, 50.0, 120.0], "id": "L1_52", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 73447.588, "bbox": [80.0, 50.0, 25.0], "faces": 5, "dims": "match", "expected_bbox": [25.0, 50.0, 80.0], "id": "L1_53", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 57905.836, "bbox": [50.0, 50.0, 48.0], "faces": 2, "dims": "match", "expected_bbox": [48.0, 50.0, 50.0], "id": "L1_54", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 126890.687, "bbox": [69.2, 69.2, 60.0], "faces": 5, "dims": "match", "expected_bbox": [60.0, 69.015, 69.015], "id": "L1_55", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 179938.667, "bbox": [80.0, 80.0, 45.0], "faces": 15, "dims": "match", "expected_bbox": [45.0, 80.0, 80.0], "id": "L1_56", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 114332.649, "bbox": [80.0, 60.0, 30.0], "faces": 13, "dims": "match", "expected_bbox": [30.0, 60.0, 80.0], "id": "L1_57", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 113554.513, "bbox": [90.0, 50.0, 30.0], "faces": 12, "dims": "match", "expected_bbox": [30.0, 50.0, 90.0], "id": "L1_58", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 220742.247, "bbox": [60.0, 60.0, 80.0], "faces": 9, "dims": "match", "expected_bbox": [60.0, 60.0, 80.0], "id": "L1_59", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 29452.431, "bbox": [100.0, 100.0, 5.0], "faces": 4, "dims": "match", "expected_bbox": [5.0, 100.0, 100.0], "id": "L1_6", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90435.511, "bbox": [100.0, 100.0, 12.0], "faces": 11, "dims": "match", "expected_bbox": [12.0, 100.0, 100.0], "id": "L1_60", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 72000.0, "bbox": [100.0, 100.0, 20.0], "faces": 14, "dims": "match", "expected_bbox": [20.0, 100.0, 100.0], "id": "L1_7", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 239244.839, "bbox": [80.0, 80.0, 40.0], "faces": 7, "dims": "match", "expected_bbox": [40.0, 80.0, 80.0], "id": "L1_8", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 102756.26, "bbox": [40.0, 40.0, 135.0], "faces": 4, "dims": "match", "expected_bbox": [40.0, 40.0, 135.0], "id": "L1_9", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32162.032, "bbox": [32.873, 32.873, 50.0], "faces": 6, "dims": "mismatch", "expected_bbox": [50.0, 50.0, 50.0], "id": "L2_1", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 61957.965, "bbox": [80.0, 40.0, 50.0], "faces": 14, "id": "L2_10", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 89002.95, "bbox": [60.0, 40.0, 40.0], "faces": 11, "dims": "match", "expected_bbox": [40.0, 40.0, 60.0], "id": "L2_11", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 85313.875, "bbox": [100.0, 100.0, 25.0], "faces": 12, "dims": "match", "expected_bbox": [25.0, 100.0, 100.0], "id": "L2_12", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 10694.338, "bbox": [56.05, 56.05, 56.05], "faces": 36, "dims": "match", "expected_bbox": [56.05, 56.05, 56.05], "id": "L2_13", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 56000.0, "bbox": [60.0, 60.0, 60.0], "faces": 30, "dims": "match", "expected_bbox": [60.0, 60.0, 60.0], "id": "L2_14", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 19327.077, "bbox": [79.599, 79.599, 10.0], "faces": 27, "dims": "match", "expected_bbox": [10.0, 79.8, 79.8], "id": "L2_15", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 77257.36, "bbox": [90.0, 90.0, 47.913], "faces": 14, "dims": "match", "expected_bbox": [47.905, 90.0, 90.0], "id": "L2_16", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 101416.219, "bbox": [80.0, 80.0, 50.0], "faces": 20, "id": "L2_17", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 98292.037, "bbox": [100.0, 40.0, 30.0], "faces": 18, "id": "L2_18", "dims": "match", "expected_bbox": [30.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 33284.488, "bbox": [40.0, 40.0, 50.0], "faces": 15, "id": "L2_19", "dims": "match", "expected_bbox": [40.0, 40.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 227898.858, "bbox": [80.0, 80.0, 80.0], "faces": 2, "id": "L2_2", "dims": "match", "expected_bbox": [80.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 118810.625, "bbox": [50.0, 50.0, 50.0], "faces": 7, "dims": "match", "expected_bbox": [50.0, 50.0, 50.0], "id": "L2_20", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 116755.161, "bbox": [100.0, 100.0, 30.0], "faces": 7, "id": "L2_21"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27725.666, "bbox": [40.0, 40.0, 40.0], "faces": 11, "id": "L2_22", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 16756.086, "bbox": [50.0, 50.0, 60.0], "faces": 22, "id": "L2_23", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 60049.602, "bbox": [40.0, 40.0, 60.0], "faces": 5, "dims": "match", "expected_bbox": [40.0, 40.0, 60.0], "id": "L2_24", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 34224.281, "bbox": [50.0, 50.0, 50.0], "faces": 18, "id": "L2_25", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 86057.167, "bbox": [100.0, 100.0, 60.0], "faces": 40, "id": "L2_26", "dims": "match", "expected_bbox": [60.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 26053.66, "bbox": [30.0, 30.0, 50.0], "faces": 16, "id": "L2_27", "dims": "match", "expected_bbox": [30.0, 30.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 66856.442, "bbox": [60.0, 60.0, 60.0], "faces": 24, "id": "L2_28", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 106489.255, "bbox": [100.0, 100.0, 20.0], "faces": 51, "id": "L2_29", "dims": "match", "expected_bbox": [20.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 99437.419, "bbox": [79.373, 79.373, 40.0], "faces": 14, "id": "L2_3", "dims": "match", "expected_bbox": [40.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 33255.997, "bbox": [60.0, 30.0, 30.0], "faces": 16, "id": "L2_30", "dims": "match", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27625.488, "bbox": [45.826, 50.0, 50.0], "faces": 10, "id": "L2_31", "dims": "match", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 22958.675, "bbox": [40.0, 37.321, 20.0], "faces": 8, "id": "L2_32"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 39500.0, "bbox": [100.0, 100.0, 12.232], "faces": 56, "id": "L2_33"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 14152.875, "bbox": [20.0, 20.0, 50.0], "faces": 7, "id": "L2_34", "dims": "match", "expected_bbox": [20.0, 20.0, 50.0]}
+{"stage": "geometry", "solids": 1, "valid": false, "volume": 197150.444, "bbox": [60.0, 60.0, 60.0], "faces": 8, "error": "shape is not valid (BRepCheck)", "id": "L2_35"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 119254.857, "bbox": [120.0, 120.0, 20.0], "faces": 22, "id": "L2_36", "dims": "match", "expected_bbox": [20.0, 120.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 63066.998, "bbox": [100.0, 100.0, 100.0], "faces": 25, "id": "L2_37"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 100705.003, "bbox": [120.0, 50.0, 80.0], "faces": 12, "id": "L2_38", "dims": "match", "expected_bbox": [50.0, 80.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 54597.692, "bbox": [60.0, 40.0, 40.0], "faces": 12, "id": "L2_39", "dims": "match", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 187982.297, "bbox": [100.0, 100.0, 55.0], "faces": 17, "id": "L2_4", "dims": "match", "expected_bbox": [55.0, 100.0, 100.0]}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L2_40", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 38675.607, "bbox": [30.0, 29.983, 60.0], "faces": 11282, "dims": "match", "expected_bbox": [30.0, 30.0, 60.0], "id": "L2_40_dup2", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 75025.833, "bbox": [40.0, 40.0, 80.0], "faces": 28, "id": "L2_41", "dims": "mismatch", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 117307.035, "bbox": [100.0, 60.0, 100.0], "faces": 23, "id": "L2_42", "dims": "match", "expected_bbox": [60.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 65132.741, "bbox": [60.0, 60.0, 20.0], "faces": 20, "id": "L2_43"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 84000.0, "bbox": [60.0, 60.0, 50.0], "faces": 46, "id": "L2_44", "dims": "match", "expected_bbox": [50.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 26263.346, "bbox": [45.0, 45.0, 110.0], "faces": 8, "id": "L2_45", "dims": "mismatch", "expected_bbox": [45.0, 45.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 113097.336, "bbox": [60.0, 80.0, 60.0], "faces": 4, "id": "L2_46"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 54585.172, "bbox": [50.0, 50.0, 100.0], "faces": 12, "id": "L2_47"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 110862.833, "bbox": [50.0, 50.0, 50.0], "faces": 7, "dims": "match", "expected_bbox": [50.0, 50.0, 50.0], "id": "L2_48", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 4317.952, "bbox": [57.5, 40.0, 40.0], "faces": 2, "id": "L2_49", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 12096.001, "bbox": [57.321, 20.0, 79.641], "faces": 9, "id": "L2_5", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 74597.598, "bbox": [100.0, 40.0, 40.0], "faces": 16, "id": "L2_50", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32664.818, "bbox": [60.0, 60.0, 20.0], "faces": 65, "id": "L2_51"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 86429.204, "bbox": [60.0, 60.0, 100.0], "faces": 11, "id": "L2_52", "dims": "match", "expected_bbox": [60.0, 60.0, 100.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 94452.164, "bbox": [60.0, 60.0, 60.0], "faces": 13, "id": "L2_53", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 3529.903, "bbox": [40.0, 40.0, 40.0], "faces": 23, "id": "L2_54", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32384.639, "bbox": [65.0, 30.0, 57.697], "faces": 4, "id": "L2_55", "dims": "match", "expected_bbox": [30.0, 57.7, 65.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36189.542, "bbox": [100.0, 100.0, 40.0], "faces": 12, "id": "L2_56", "dims": "match", "expected_bbox": [40.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 177313.058, "bbox": [98.0, 98.0, 30.0], "faces": 22, "id": "L2_57", "dims": "match", "expected_bbox": [30.0, 99.0, 99.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 123454.278, "bbox": [80.0, 40.0, 40.0], "faces": 10, "id": "L2_58", "dims": "match", "expected_bbox": [40.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 116141.946, "bbox": [50.0, 50.0, 50.0], "faces": 18, "id": "L2_59", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 56548.668, "bbox": [30.0, 30.0, 80.0], "faces": 3, "id": "L2_6", "dims": "match", "expected_bbox": [30.0, 30.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 107407.083, "bbox": [90.0, 90.0, 25.0], "faces": 22, "id": "L2_60", "dims": "match", "expected_bbox": [25.0, 90.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 54800.089, "bbox": [140.0, 60.0, 15.0], "faces": 8, "id": "L2_7"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 62831.853, "bbox": [100.0, 100.0, 100.0], "faces": 52, "id": "L2_8"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 34377.254, "bbox": [90.0, 90.0, 10.0], "faces": 39, "id": "L2_9", "dims": "match", "expected_bbox": [10.0, 90.0, 90.0]}
+{"stage": "geometry", "solids": 0, "valid": true, "volume": 0, "bbox": [100.0, 282.843, 282.843], "faces": 1, "error": "no solid in result", "id": "L3_1"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 176070.163, "bbox": [169.986, 169.986, 79.722], "faces": 16, "id": "L3_10"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 99759.48, "bbox": [144.8, 80.012, 144.749], "faces": 6, "id": "L3_11"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 268058.377, "bbox": [80.0, 80.0, 83.094], "faces": 365, "dims": "mismatch", "expected_bbox": [60.0, 80.0, 80.0], "id": "L3_12", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 66464.786, "bbox": [66.0, 66.0, 30.0], "faces": 694, "id": "L3_13", "dims": "match", "expected_bbox": [30.0, 66.0, 66.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 40000.0, "bbox": [100.0, 50.0, 35.0], "faces": 3826, "dims": "match", "expected_bbox": [35.0, 50.0, 100.0], "id": "L3_14", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 524459.551, "bbox": [216.0, 216.0, 113.0], "faces": 8, "id": "L3_15"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 78496.733, "bbox": [103.673, 56.632, 26.251], "faces": 4, "id": "L3_16"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 191147.93, "bbox": [50.0, 50.0, 100.0], "faces": 7, "id": "L3_17", "dims": "match", "expected_bbox": [50.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 24384.89, "bbox": [80.0, 80.0, 109.529], "faces": 183, "id": "L3_18"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 147297.753, "bbox": [120.0, 120.0, 35.0], "faces": 606, "id": "L3_19", "dims": "match", "expected_bbox": [35.0, 120.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 22033.803, "bbox": [100.0, 13.5, 50.0], "faces": 1141, "id": "L3_2"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 410.136, "bbox": [64.0, 18.505, 17.978], "faces": 5, "id": "L3_20"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 223102.001, "bbox": [60.0, 60.0, 100.0], "faces": 9, "id": "L3_21"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 14021.709, "bbox": [60.0, 60.0, 40.0], "faces": 59, "id": "L3_22"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 1395059.235, "bbox": [200.0, 100.0, 80.0], "faces": 83, "id": "L3_23", "dims": "match", "expected_bbox": [80.0, 100.0, 200.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 115158.507, "bbox": [120.0, 120.0, 42.0], "faces": 210, "dims": "mismatch", "expected_bbox": [40.0, 120.0, 120.0], "id": "L3_24", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 1212616.67, "bbox": [161.18, 160.0, 182.416], "faces": 132, "id": "L3_25"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 473582.555, "bbox": [180.0, 141.139, 50.0], "faces": 34, "id": "L3_26"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 286469.477, "bbox": [110.0, 110.0, 120.0], "faces": 92, "id": "L3_27", "dims": "match", "expected_bbox": [110.0, 110.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 467264.394, "bbox": [100.0, 110.0, 135.0], "faces": 34, "id": "L3_28"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 9536.147, "bbox": [87.251, 86.501, 41.551], "faces": 6, "id": "L3_29", "dims": "match", "expected_bbox": [41.35, 86.5, 87.275]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36484.185, "bbox": [66.0, 66.0, 15.0], "faces": 1446, "id": "L3_3", "dims": "match", "expected_bbox": [15.0, 66.0, 66.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 529189.016, "bbox": [150.0, 100.0, 45.0], "faces": 55, "id": "L3_30", "dims": "match", "expected_bbox": [45.0, 100.0, 150.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 13893.148, "bbox": [150.0, 35.031, 25.028], "faces": 8, "id": "L3_4"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 676924.921, "bbox": [200.0, 200.0, 130.0], "faces": 8, "id": "L3_5", "dims": "match", "expected_bbox": [130.0, 200.0, 200.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 122246.125, "bbox": [40.0, 43.883, 100.0], "faces": 11, "id": "L3_6", "dims": "mismatch", "expected_bbox": [40.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 51636.268, "bbox": [80.0, 80.0, 30.0], "faces": 7, "id": "L3_7"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27870.227, "bbox": [66.0, 66.0, 80.0], "faces": 4, "id": "L3_8", "dims": "match", "expected_bbox": [66.0, 66.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 591047.698, "bbox": [82.498, 80.0, 150.0], "faces": 3, "id": "L3_9", "dims": "mismatch", "expected_bbox": [80.0, 80.0, 150.0]}
