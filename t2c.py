@@ -50,8 +50,14 @@ def client():
 def prompts(style: str, limit: int | None):
     rows = list(csv.DictReader(open(ROOT / "data" / "release.csv", encoding="utf-8-sig", errors="replace")))
     col = {"pro": "pro_prompt_en", "geo": "geo_prompt_en"}[style]
-    rows = [(r["id"], r[col]) for r in rows if r.get(col)]
-    return rows[:limit] if limit else rows
+    out, seen = [], {}
+    for r in rows:
+        if not r.get(col):
+            continue
+        # the public release reuses one id for two different prompts (L2_40 notch / groove): keep both
+        n = seen[r["id"]] = seen.get(r["id"], 0) + 1
+        out.append((r["id"] if n == 1 else f"{r['id']}_dup{n}", r[col]))
+    return out[:limit] if limit else out
 
 
 def code_block(text: str) -> str:
@@ -236,6 +242,8 @@ def main() -> int:
         assert bad["stage"] != "ok", bad
         none = run_program("import cadquery as cq\nx = 1")
         assert none["stage"] == "result", none
+        ids = [i for i, _ in prompts("pro", None)]
+        assert len(ids) == len(set(ids)) == 151, (len(ids), len(set(ids)))
         print("selftest ok")
     return 0
 
