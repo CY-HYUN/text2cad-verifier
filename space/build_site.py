@@ -33,6 +33,17 @@ def render(job):
         return key, f"{type(e).__name__}: {e}"[:200]
 
 
+def write_docs() -> None:
+    """README and the case study as pages in the demo's style, so the demo's links stay on the site."""
+    tpl = (HERE / "doc.html").read_text(encoding="utf-8")
+    for out, src, title, on in (("method.html", "README.md", "Code & method", "METHOD"),
+                                ("case-study.html", "docs/case_study.md", "Case study", "CASE")):
+        md = (ROOT / src).read_text(encoding="utf-8").replace("</", "<\\/")
+        page = (tpl.replace("__MARKDOWN__", md).replace("__TITLE__", title).replace("__SRC__", src)
+                .replace(f"__ON_{on}__", "on").replace("__ON_METHOD__", "").replace("__ON_CASE__", ""))
+        (OUT / out).write_text(page, encoding="utf-8")
+
+
 def main() -> int:
     import t2c
     data = json.loads((HERE / "demo_data.json").read_text(encoding="utf-8"))
@@ -41,7 +52,8 @@ def main() -> int:
         data["stl"], data["stl_errors"] = old["stl"], old["stl_errors"]
         (OUT / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
         shutil.copy(HERE / "site.html", OUT / "index.html")
-        print("data.json and index.html rewritten; STL kept:", len(data["stl"]))
+        write_docs()
+        print("data.json, index.html, method.html, case-study.html rewritten; STL kept:", len(data["stl"]))
         return 0
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -71,6 +83,7 @@ def main() -> int:
     data["stl_errors"] = errors
     (OUT / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     shutil.copy(HERE / "site.html", OUT / "index.html")
+    write_docs()
     size = sum(p.stat().st_size for p in (OUT / "stl").glob("*.stl"))
     print(f"programs {len(jobs) + len(skipped)}, STL {len(stl)} ({size / 1e6:.1f} MB), no STL {len(errors)}")
     for k, v in list(errors.items())[:10]:
