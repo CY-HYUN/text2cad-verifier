@@ -47,6 +47,18 @@ The API key is read from `%USERPROFILE%/.anthropic/text2cad_api.env` and passed 
 runs on your machine: the allow-list blocks every import except `cadquery` and `math`, and the builtins that reach
 files, the OS or dynamic code. Read `safety_problem()` in `t2c.py` before running other people's outputs.
 
+### Serve the verifiers as an API
+
+`serve.py` puts both checks behind HTTP (FastAPI, Pydantic validation, OpenAPI docs at `/docs`); no model is called.
+
+```
+uv run --extra serve uvicorn serve:app --port 8000
+curl -X POST localhost:8000/verify -H "Content-Type: application/json" -d '{"code": "import cadquery as cq\nresult = cq.Workplane(\"XY\").box(40, 20, 10)", "expected_bbox_mm": [10, 20, 40]}'
+```
+
+`uv run --extra serve --with pytest pytest tests/test_serve.py` runs the API tests (3). The `Dockerfile` builds the same
+service on `python:3.12-slim`; it has not been built on this machine.
+
 ## Results (2026-10-08, model `claude-opus-5-5`, 151 prompts per run)
 
 Expected sizes: 132 of 151 parts got a size from both descriptions, and the two readings agreed on 120 (spec batch
