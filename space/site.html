@@ -94,16 +94,41 @@
   .warnbox { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--warn-soft); color: var(--warn); font-size: 13px; }
   .limits .card { padding: 16px 18px; font-size: 14px; color: var(--muted); } .limits b { color: var(--fg); display: block; margin-bottom: 4px; }
   footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--faint); font-size: 13px; }
+  .pagetabs { display: flex; align-items: center; gap: 4px; }
+  .pagetabs a { color: var(--muted); font-size: 14px; font-weight: 500; padding: 6px 12px; border-radius: 999px; }
+  .pagetabs a:hover { color: var(--fg); background: var(--surface-2); text-decoration: none; }
+  .pagetabs a.on { color: var(--fg); background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--line); }
+  .pagetabs a.ext { margin-left: 8px; }
+  .doctab { padding-bottom: 60px; }
+  .doc { max-width: 800px; margin: 40px auto 0; font-size: 16px; line-height: 1.75; }
+  .doc h1 { font-size: 34px; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 18px; }
+  .doc h2 { font-size: 22px; margin: 40px 0 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .doc h3 { font-size: 18px; margin: 26px 0 8px; } .doc li { margin: 4px 0; }
+  .doc code { background: var(--surface-2); padding: 1px 5px; border-radius: 5px; font-size: .88em; }
+  .doc pre code { background: transparent; padding: 14px 16px; display: block; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 14px; margin: 16px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-2); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .doc .src { margin-top: 40px; font-size: 13px; color: var(--faint); border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 700px) { .pagetabs a { padding: 6px 8px; font-size: 13px; } .pagetabs a.ext { display: none; } }
   @media (max-width: 960px) { .stats { grid-template-columns: repeat(2, 1fr); } .explorer { grid-template-columns: 1fr; } .side { position: static; max-height: 380px; } .grid2 { grid-template-columns: 1fr; } .limits { grid-template-columns: 1fr; } nav { display: none; } }
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
-  <div class="brand">text2cad-verifier <span>/ demo</span></div>
-  <nav><a href="#results">Results</a><a href="#explore">Explore parts</a><a href="#limits">Limits</a><a href="method.html">Method</a><a href="case-study.html">Case study</a><a href="https://github.com/CY-HYUN/text2cad-verifier" target="_blank" rel="noopener">GitHub ↗</a></nav>
+  <div class="brand">text2cad-verifier</div>
+  <div class="pagetabs" id="pagetabs">
+    <a href="#demo" data-t="demo" class="on">Demo</a><a href="#method" data-t="method">Code &amp; method</a><a href="#case-study" data-t="case-study">Case study</a>
+    <a class="ext" href="https://github.com/CY-HYUN/text2cad-verifier" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
 </div></header>
 
-<main class="wrap">
+<section class="doctab wrap" id="tab-method" hidden><article class="doc" data-md="md-method" data-src="README.md"></article></section>
+<section class="doctab wrap" id="tab-case-study" hidden><article class="doc" data-md="md-case" data-src="docs/case_study.md"></article></section>
+<script id="md-method" type="text/markdown">__README_MD__</script>
+<script id="md-case" type="text/markdown">__CASE_MD__</script>
+
+<main class="wrap" id="tab-demo">
   <div class="hero">
     <div class="eyebrow">LLM → CAD code · verification</div>
     <h1>Does LLM-written CAD code run, and does the part come out the right size?</h1>
@@ -112,8 +137,8 @@
       and one round of verifier feedback goes back to the model. This page shows the committed runs; it runs no model and no CAD code.</p>
     <div class="links">
       <a class="btn primary" href="#explore">Explore the 151 parts</a>
-      <a class="btn" href="method.html">Code &amp; method</a>
-      <a class="btn" href="case-study.html">One-page case study</a>
+      <a class="btn" href="#method">Code &amp; method</a>
+      <a class="btn" href="#case-study">One-page case study</a>
     </div>
     <div class="stats" id="stats"></div>
   </div>
@@ -183,6 +208,41 @@
 <footer><div class="wrap">Data: Text2CAD-Bench public preview (AICAD, CC BY 4.0). Programs generated 2026-10-08 with <code>claude-opus-5-5</code> through the Message Batches API. Built by Changyong Hyun.</div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+  // In-page tabs: #method and #case-study show the README and the case study; every other hash is the demo.
+  (function () {
+    const repo = "https://github.com/CY-HYUN/text2cad-verifier/blob/main/";
+    const inSite = { "docs/case_study.md": "#case-study", "case_study.md": "#case-study", "README.md": "#method", "../README.md": "#method" };
+    const tabs = { demo: document.getElementById("tab-demo"), method: document.getElementById("tab-method"), "case-study": document.getElementById("tab-case-study") };
+    const footer = document.querySelector("footer");
+    function render(art) {
+      if (art.dataset.done) return; art.dataset.done = "1";
+      art.innerHTML = marked.parse(document.getElementById(art.dataset.md).textContent);
+      art.querySelectorAll("a[href]").forEach(a => {
+        const h = a.getAttribute("href");
+        if (/^#/.test(h)) return;
+        if (/^https?:/.test(h)) { if (!h.includes("cy-hyun.github.io")) { a.target = "_blank"; a.rel = "noopener"; } else if (h.endsWith("/demo/")) a.href = "#demo"; return; }
+        if (inSite[h]) { a.href = inSite[h]; return; }
+        a.href = repo + h.replace(/^\.\.?\//, ""); a.target = "_blank"; a.rel = "noopener";
+      });
+      if (window.hljs) art.querySelectorAll("pre code").forEach(c => hljs.highlightElement(c));
+      art.insertAdjacentHTML("beforeend", `<div class="src">Source: <a href="${repo}${art.dataset.src}" target="_blank" rel="noopener">${art.dataset.src} on GitHub ↗</a></div>`);
+    }
+    function show() {
+      const h = location.hash.slice(1);
+      const t = tabs[h] && h !== "demo" ? h : "demo";
+      for (const [k, el] of Object.entries(tabs)) el.hidden = k !== t;
+      footer.hidden = t !== "demo";
+      document.querySelectorAll("#pagetabs a[data-t]").forEach(a => a.classList.toggle("on", a.dataset.t === t));
+      if (t !== "demo") { render(tabs[t].querySelector("article")); window.scrollTo(0, 0); }
+      else if (h && h !== "demo") { const el = document.getElementById(h); if (el) el.scrollIntoView(); }
+      else if (h === "demo") window.scrollTo(0, 0);
+      window.dispatchEvent(new Event("resize"));
+    }
+    window.addEventListener("hashchange", show); show();
+  })();
+</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from "three";

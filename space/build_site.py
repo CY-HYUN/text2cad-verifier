@@ -1,4 +1,4 @@
-"""Static demo for GitHub Pages: docs/demo/ gets index.html (copied from space/site.html), data.json (prompts,
+"""Static demo for GitHub Pages: docs/demo/ gets index.html (space/site.html with the README and case study embedded as tabs), data.json (prompts,
 programs, verdicts, sizes from demo_data.json) and one STL per program that builds. Nothing runs in the browser
 except the viewer. Run from the repo root: `uv run python space/build_site.py` (after space/build_data.py).
 
@@ -33,15 +33,15 @@ def render(job):
         return key, f"{type(e).__name__}: {e}"[:200]
 
 
-def write_docs() -> None:
-    """README and the case study as pages in the demo's style, so the demo's links stay on the site."""
-    tpl = (HERE / "doc.html").read_text(encoding="utf-8")
-    for out, src, title, on in (("method.html", "README.md", "Code & method", "METHOD"),
-                                ("case-study.html", "docs/case_study.md", "Case study", "CASE")):
-        md = (ROOT / src).read_text(encoding="utf-8").replace("</", "<\\/")
-        page = (tpl.replace("__MARKDOWN__", md).replace("__TITLE__", title).replace("__SRC__", src)
-                .replace(f"__ON_{on}__", "on").replace("__ON_METHOD__", "").replace("__ON_CASE__", ""))
-        (OUT / out).write_text(page, encoding="utf-8")
+def write_index() -> None:
+    """index.html with the README and the case study embedded, shown as in-page tabs (#method, #case-study)."""
+    md = lambda p: (ROOT / p).read_text(encoding="utf-8").replace("</", "<\\/")
+    page = (HERE / "site.html").read_text(encoding="utf-8")
+    page = page.replace("__README_MD__", md("README.md")).replace("__CASE_MD__", md("docs/case_study.md"))
+    (OUT / "index.html").write_text(page, encoding="utf-8")
+    for old, tab in (("method.html", "method"), ("case-study.html", "case-study")):  # earlier links keep working
+        (OUT / old).write_text(f'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=./#{tab}">'
+                               f'<link rel="canonical" href="./#{tab}"><a href="./#{tab}">Moved</a>', encoding="utf-8")
 
 
 def main() -> int:
@@ -51,9 +51,8 @@ def main() -> int:
         old = json.loads((OUT / "data.json").read_text(encoding="utf-8"))
         data["stl"], data["stl_errors"] = old["stl"], old["stl_errors"]
         (OUT / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-        shutil.copy(HERE / "site.html", OUT / "index.html")
-        write_docs()
-        print("data.json, index.html, method.html, case-study.html rewritten; STL kept:", len(data["stl"]))
+        write_index()
+        print("data.json and index.html rewritten; STL kept:", len(data["stl"]))
         return 0
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -82,8 +81,7 @@ def main() -> int:
     data["stl"] = stl
     data["stl_errors"] = errors
     (OUT / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-    shutil.copy(HERE / "site.html", OUT / "index.html")
-    write_docs()
+    write_index()
     size = sum(p.stat().st_size for p in (OUT / "stl").glob("*.stl"))
     print(f"programs {len(jobs) + len(skipped)}, STL {len(stl)} ({size / 1e6:.1f} MB), no STL {len(errors)}")
     for k, v in list(errors.items())[:10]:
@@ -93,3 +91,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
