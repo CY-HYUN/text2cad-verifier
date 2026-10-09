@@ -36,6 +36,13 @@ def render(job):
 def main() -> int:
     import t2c
     data = json.loads((HERE / "demo_data.json").read_text(encoding="utf-8"))
+    if "--page-only" in sys.argv:  # new data.json and index.html, keep the rendered STL files
+        old = json.loads((OUT / "data.json").read_text(encoding="utf-8"))
+        data["stl"], data["stl_errors"] = old["stl"], old["stl_errors"]
+        (OUT / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        shutil.copy(HERE / "site.html", OUT / "index.html")
+        print("data.json and index.html rewritten; STL kept:", len(data["stl"]))
+        return 0
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "stl").mkdir(parents=True)

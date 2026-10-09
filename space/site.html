@@ -3,60 +3,186 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>text2cad-verifier demo</title>
+<title>text2cad-verifier · demo</title>
+<meta name="description" content="Does LLM-written CadQuery run, and does the part come out the right size? 151 Text2CAD-Bench prompts, two verifiers, one repair round.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
 <style>
-  :root { --bg:#fbfbfa; --fg:#1d1d1f; --muted:#6b6b70; --line:#e2e2e0; --card:#ffffff; --ok:#1f7a3a; --bad:#b3261e; --accent:#2457c5; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#151517; --fg:#ececee; --muted:#9a9aa0; --line:#2c2c30; --card:#1d1d20; --ok:#5cc27d; --bad:#ff7b72; --accent:#7aa2ff; } }
+  :root {
+    --bg: #f7f7f5; --surface: #ffffff; --surface-2: #f1f1ee; --fg: #16171a; --muted: #62646b; --faint: #9a9ca3;
+    --line: #e4e4e0; --accent: #2b59c3; --accent-soft: #e8eefb; --ok: #1d7a43; --ok-soft: #e4f3ea; --bad: #b42318; --bad-soft: #fcebea;
+    --warn: #9a6700; --warn-soft: #fbf3dc; --shadow: 0 1px 2px rgba(16,24,40,.04), 0 4px 16px rgba(16,24,40,.06); --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) { :root {
+    --bg: #0f1013; --surface: #17181c; --surface-2: #1e2025; --fg: #ececef; --muted: #a2a4ab; --faint: #6d7078;
+    --line: #2a2c32; --accent: #86a8ff; --accent-soft: #1d2640; --ok: #5bd18a; --ok-soft: #14291d; --bad: #ff8a80; --bad-soft: #321716;
+    --warn: #e7b952; --warn-soft: #2e2512; --shadow: none; } }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:1100px; margin:0 auto; padding:24px 16px 64px; }
-  h1 { font-size:26px; margin:0 0 6px; } h2 { font-size:18px; margin:28px 0 10px; }
-  p.lead { color:var(--muted); margin:0 0 16px; max-width:800px; }
-  a { color:var(--accent); }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
-  table { border-collapse:collapse; width:100%; font-size:14px; }
-  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
-  .controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:12px; }
-  select, button { font:inherit; padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--fg); }
-  button.on { border-color:var(--accent); color:var(--accent); }
-  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
-  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
-  pre { margin:0; padding:10px; overflow:auto; max-height:360px; font:12.5px/1.45 ui-monospace, Consolas, monospace; background:var(--bg); border:1px solid var(--line); border-radius:8px; white-space:pre; }
-  .prompt { white-space:pre-wrap; font-size:14px; }
-  .ok { color:var(--ok); } .bad { color:var(--bad); } .muted { color:var(--muted); }
-  #viewer { width:100%; height:420px; border:1px solid var(--line); border-radius:8px; background:var(--bg); touch-action:none; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+  code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+  header.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .brand { font-weight: 700; letter-spacing: -.01em; } .brand span { color: var(--muted); font-weight: 500; }
+  nav a { color: var(--muted); margin-left: 20px; font-size: 14px; } nav a:hover { color: var(--fg); text-decoration: none; }
+  .hero { padding: 56px 0 28px; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; letter-spacing: -.025em; margin: 10px 0 14px; max-width: 820px; }
+  .lead { color: var(--muted); font-size: 17px; max-width: 760px; margin: 0; }
+  .links { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-size: 14px; font-weight: 500; }
+  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn:hover { text-decoration: none; filter: brightness(.97); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 34px 0 10px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+  .stat .k { font-size: 13px; color: var(--muted); } .stat .v { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin-top: 4px; }
+  .stat .v small { font-size: 15px; color: var(--faint); font-weight: 500; } .stat .d { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .arrow { color: var(--faint); font-weight: 500; margin: 0 4px; }
+  section { padding: 34px 0; } h2 { font-size: 22px; letter-spacing: -.015em; margin: 0 0 6px; } .sub { color: var(--muted); margin: 0 0 18px; }
+  .pipeline { display: flex; align-items: stretch; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow-x: auto; }
+  .step { flex: 1; min-width: 170px; padding: 16px 18px; position: relative; }
+  .step + .step { border-left: 1px solid var(--line); }
+  .step .n { font: 600 12px "JetBrains Mono", monospace; color: var(--accent); } .step .t { font-weight: 600; margin: 2px 0 4px; } .step .x { font-size: 13px; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+  table.res { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.res th, table.res td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+  table.res th { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; background: var(--surface-2); }
+  table.res tr:last-child td { border-bottom: 0; } td.num { font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; border-radius: 99px; background: var(--surface-2); overflow: hidden; margin-top: 6px; max-width: 160px; }
+  .bar > i { display: block; height: 100%; background: var(--bad); }
+  .note { font-size: 13px; color: var(--muted); padding: 12px 16px; border-top: 1px solid var(--line); }
+  .explorer { display: grid; grid-template-columns: 300px 1fr; gap: 16px; align-items: start; }
+  .side { position: sticky; top: 72px; max-height: calc(100vh - 90px); display: flex; flex-direction: column; overflow: hidden; }
+  .filters { padding: 12px; border-bottom: 1px solid var(--line); display: grid; gap: 8px; }
+  .seg { display: flex; background: var(--surface-2); border-radius: 10px; padding: 3px; }
+  .seg button { flex: 1; border: 0; background: transparent; color: var(--muted); font: 500 13px Inter, sans-serif; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+  .seg button.on { background: var(--surface); color: var(--fg); box-shadow: var(--shadow); }
+  .search { width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 8px 10px; font: 14px Inter, sans-serif; }
+  .chk { font-size: 13px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+  .list { overflow-y: auto; padding: 6px; }
+  .item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; cursor: pointer; font-size: 14px; }
+  .item:hover { background: var(--surface-2); } .item.on { background: var(--accent-soft); }
+  .item .id { font: 500 13px "JetBrains Mono", monospace; min-width: 70px; }
+  .item .lv { font-size: 12px; color: var(--faint); margin-left: auto; }
+  .dots { display: flex; gap: 4px; } .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--faint); }
+  .dot.ok { background: var(--ok); } .dot.bad { background: var(--bad); } .dot.na { background: var(--line); }
+  .count { font-size: 12px; color: var(--faint); padding: 6px 12px 10px; }
+  .detail { display: grid; gap: 16px; min-width: 0; }
+  .dhead { padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+  .dhead h3 { margin: 0; font: 600 20px "JetBrains Mono", monospace; letter-spacing: -.01em; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 500; }
+  .pill.ok { background: var(--ok-soft); color: var(--ok); } .pill.bad { background: var(--bad-soft); color: var(--bad); } .pill.na { background: var(--surface-2); color: var(--muted); }
+  .grid2 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; }
+  .viewer { position: relative; } #viewer { width: 100%; height: 440px; display: block; border-radius: var(--radius); background: radial-gradient(ellipse at 50% 35%, var(--surface) 0%, var(--surface-2) 100%); touch-action: none; }
+  .vbar { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+  .vbar .seg { pointer-events: auto; width: 230px; box-shadow: var(--shadow); }
+  .vmsg { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 14px; padding: 30px; pointer-events: none; }
+  .vhint { position: absolute; bottom: 10px; right: 14px; font-size: 12px; color: var(--faint); }
+  .facts { padding: 16px 20px; display: grid; gap: 12px; font-size: 14px; }
+  .facts .row { display: grid; grid-template-columns: 120px 1fr; gap: 10px; } .facts .lab { color: var(--muted); }
+  .tabs { display: flex; gap: 4px; padding: 10px 12px 0; border-bottom: 1px solid var(--line); }
+  .tabs button { border: 0; background: transparent; color: var(--muted); font: 500 14px Inter, sans-serif; padding: 8px 12px; border-bottom: 2px solid transparent; cursor: pointer; }
+  .tabs button.on { color: var(--fg); border-bottom-color: var(--accent); } .tabs button:disabled { opacity: .4; cursor: default; }
+  .pane { padding: 16px 20px 20px; } .prompt { white-space: pre-wrap; font-size: 14.5px; line-height: 1.7; }
+  pre { margin: 0; max-height: 460px; overflow: auto; border-radius: 10px; border: 1px solid var(--line); font-size: 12.8px; line-height: 1.55; }
+  pre code.hljs { padding: 14px 16px; background: var(--surface-2); }
+  .limits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .warnbox { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: var(--warn-soft); color: var(--warn); font-size: 13px; }
+  .limits .card { padding: 16px 18px; font-size: 14px; color: var(--muted); } .limits b { color: var(--fg); display: block; margin-bottom: 4px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--faint); font-size: 13px; }
+  @media (max-width: 960px) { .stats { grid-template-columns: repeat(2, 1fr); } .explorer { grid-template-columns: 1fr; } .side { position: static; max-height: 380px; } .grid2 { grid-template-columns: 1fr; } .limits { grid-template-columns: 1fr; } nav { display: none; } }
 </style>
 </head>
 <body>
-<main>
-  <h1>text2cad-verifier</h1>
-  <p class="lead">How often does a frontier LLM (<code>claude-opus-5-5</code>) write CadQuery code that runs, and does the part come out
-  the right size? 151 prompts from the public preview of <a href="https://huggingface.co/datasets/AICAD/Text2CAD-Bench">Text2CAD-Bench</a>
-  (CC BY 4.0), two verifiers, one repair round. Code, method and limits: <a href="https://github.com/CY-HYUN/text2cad-verifier">GitHub</a>
-  · <a href="https://github.com/CY-HYUN/text2cad-verifier/blob/main/docs/case_study.md">one-page case study</a>.
-  This page shows the committed runs; it runs no model and no CAD code.</p>
+<header class="top"><div class="wrap">
+  <div class="brand">text2cad-verifier <span>/ demo</span></div>
+  <nav><a href="#results">Results</a><a href="#explore">Explore parts</a><a href="#limits">Limits</a><a href="https://github.com/CY-HYUN/text2cad-verifier">GitHub</a></nav>
+</div></header>
 
-  <div class="card" id="summary"></div>
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">LLM → CAD code · verification</div>
+    <h1>Does LLM-written CAD code run, and does the part come out the right size?</h1>
+    <p class="lead"><code>claude-opus-5-5</code> writes CadQuery programs for 151 prompts from the public preview of
+      <a href="https://huggingface.co/datasets/AICAD/Text2CAD-Bench">Text2CAD-Bench</a> (CC BY 4.0). Two verifiers check every program,
+      and one round of verifier feedback goes back to the model. This page shows the committed runs; it runs no model and no CAD code.</p>
+    <div class="links">
+      <a class="btn primary" href="#explore">Explore the 151 parts</a>
+      <a class="btn" href="https://github.com/CY-HYUN/text2cad-verifier">Code &amp; method</a>
+      <a class="btn" href="https://github.com/CY-HYUN/text2cad-verifier/blob/main/docs/case_study.md">One-page case study</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
 
-  <h2>Browse the parts</h2>
-  <div class="controls">
-    <label>Level <select id="level"><option value="">all</option><option>L1</option><option>L2</option><option>L3</option></select></label>
-    <label>Part <select id="part"></select></label>
-    <span>Prompt style
-      <button data-style="pro" class="on">pro (step by step)</button>
-      <button data-style="geo">geo (geometric)</button></span>
-    <label><input type="checkbox" id="onlyfail"> only parts the first attempt got wrong</label>
-  </div>
-  <div class="card"><div class="prompt" id="prompt"></div></div>
-  <div class="card" style="margin-top:12px" id="verdicts"></div>
-  <div class="grid" style="margin-top:12px">
-    <div><div class="controls"><span>3D view</span>
-      <button data-view="gen" class="on">first attempt</button><button data-view="repair">after repair</button></div>
-      <canvas id="viewer"></canvas><div class="muted" id="viewnote"></div></div>
-    <div><div class="muted">First attempt</div><pre id="code1"></pre>
-      <div class="muted" style="margin-top:10px">After the verifier's feedback (only for parts that failed a check)</div><pre id="code2"></pre></div>
-  </div>
+  <section>
+    <h2>How a program is checked</h2>
+    <p class="sub">Every generated program goes through the same five steps.</p>
+    <div class="pipeline">
+      <div class="step"><div class="n">01</div><div class="t">Prompt</div><div class="x">A step-by-step (pro) or geometric (geo) description of one part.</div></div>
+      <div class="step"><div class="n">02</div><div class="t">Generate</div><div class="x">The model writes a CadQuery program that assigns the part to <code>result</code>.</div></div>
+      <div class="step"><div class="n">03</div><div class="t">Execution check</div><div class="x">Runs in a separate process, imports only cadquery and math, must leave a valid solid.</div></div>
+      <div class="step"><div class="n">04</div><div class="t">Size check</div><div class="x">Bounding box vs the size the text implies, when two separate readings of the text agree (2% or 0.5 mm).</div></div>
+      <div class="step"><div class="n">05</div><div class="t">One repair round</div><div class="x">Each failure goes back once with the verifier's message.</div></div>
+    </div>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2>
+    <p class="sub">Counted in your browser from the committed verdicts; the same numbers as the README table.</p>
+    <div class="card" id="restable"></div>
+  </section>
+
+  <section id="explore">
+    <h2>Explore the parts</h2>
+    <p class="sub">Each dot is one check: execution, then size. Pick a part to see its prompt, both programs and the solid they build.</p>
+    <div class="explorer">
+      <aside class="card side">
+        <div class="filters">
+          <div class="seg" id="styleSeg"><button data-v="pro" class="on">pro prompts</button><button data-v="geo">geo prompts</button></div>
+          <div class="seg" id="levelSeg"><button data-v="" class="on">All</button><button data-v="L1">L1</button><button data-v="L2">L2</button><button data-v="L3">L3</button></div>
+          <input class="search" id="search" placeholder="Search id or prompt text">
+          <label class="chk"><input type="checkbox" id="onlyfail"> Only parts the first attempt got wrong</label>
+        </div>
+        <div class="list" id="list"></div>
+        <div class="count" id="count"></div>
+      </aside>
+      <div class="detail">
+        <div class="card dhead" id="dhead"></div>
+        <div class="grid2">
+          <div class="card viewer">
+            <canvas id="viewer"></canvas>
+            <div class="vbar"><div class="seg" id="viewSeg"><button data-v="gen" class="on">First attempt</button><button data-v="repair">After repair</button></div></div>
+            <div class="vmsg" id="vmsg"></div>
+            <div class="vhint">drag to rotate · scroll to zoom</div>
+          </div>
+          <div class="card facts" id="facts"></div>
+        </div>
+        <div class="card">
+          <div class="tabs" id="tabs"><button data-v="prompt" class="on">Prompt</button><button data-v="gen">First program</button><button data-v="repair">Repaired program</button></div>
+          <div class="pane" id="pane"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits">
+    <h2>What these numbers do and do not show</h2>
+    <p class="sub">Read before quoting a number.</p>
+    <div class="limits">
+      <div class="card"><b>Overall size only</b>The size check compares the bounding box. A part with the right box and a missing hole passes it.</div>
+      <div class="card"><b>Repair saw the answer box</b>Size feedback quoted the expected box, so a size match after repair is measured by the check that guided it. A run failure fixed after repair is the stronger signal.</div>
+      <div class="card"><b>Noise floor</b>The same 151 prompts generated twice differ by 2 run failures and 1 size mismatch; the repair effect is well outside that.</div>
+      <div class="card" id="enccard"><b>Broken symbols in the input</b></div>
+    </div>
+  </section>
 </main>
+<footer><div class="wrap">Data: Text2CAD-Bench public preview (AICAD, CC BY 4.0). Programs generated 2026-10-08 with <code>claude-opus-5-5</code> through the Message Batches API. Built by Changyong Hyun.</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from "three";
@@ -65,77 +191,131 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 const D = await (await fetch("data.json")).json();
 const STL = new Set(D.stl);
-let style = "pro", view = "gen";
+const S = { style: "pro", level: "", q: "", only: false, pid: null, view: "gen", tab: "prompt" };
 const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
 
-const close = (got, exp) => [...got].sort((a,b)=>a-b).every((g,i)=>Math.abs(g - [...exp].sort((a,b)=>a-b)[i]) <= Math.max(0.5, 0.02*[...exp].sort((a,b)=>a-b)[i]));
+const sorted = a => [...a].sort((x, y) => x - y);
+const close = (got, exp) => { const g = sorted(got), e = sorted(exp); return g.every((v, i) => Math.abs(v - e[i]) <= Math.max(0.5, 0.02 * e[i])); };
 const expected = pid => { const s = D.spec[pid]; return s && s.agree ? s.bbox : null; };
-function verdict(v, exp) {
-  if (!v) return ['muted', 'not run'];
-  if (v.stage !== 'ok') return ['bad', `fails at ${v.stage}: ${v.error || ''}`];
-  if (!exp) return ['ok', `runs, valid solid, box ${v.bbox.join(' × ')} mm (no agreed size to compare)`];
-  return close(v.bbox, exp) ? ['ok', `runs, valid solid, box ${v.bbox.join(' × ')} mm, size matches`]
-                            : ['bad', `runs, but box ${v.bbox.join(' × ')} mm, expected ${exp.join(' × ')} mm`];
+const fmt = b => b.map(x => +(+x).toFixed(2)).join(" × ") + " mm";
+function judge(v, exp) {
+  if (!v) return { run: "na", size: "na", text: "not run" };
+  if (v.stage !== "ok") return { run: "bad", size: "na", text: `fails at ${v.stage}`, err: v.error || "" };
+  if (!exp) return { run: "ok", size: "na", text: "runs, no agreed size", box: v.bbox };
+  return close(v.bbox, exp) ? { run: "ok", size: "ok", text: "runs, size matches", box: v.bbox } : { run: "ok", size: "bad", text: "runs, size mismatch", box: v.bbox };
 }
-const firstWrong = (st, pid) => { const v = D.gen[st].verdict[pid], e = expected(pid); return !v || v.stage !== 'ok' || (e && !close(v.bbox, e)); };
+const latest = (st, pid) => D.repair[st].verdict[pid] || D.gen[st].verdict[pid];
+const firstWrong = (st, pid) => { const j = judge(D.gen[st].verdict[pid], expected(pid)); return j.run !== "ok" || j.size === "bad"; };
+const ids = Object.keys(D.prompts.pro);
 
-function summary() {
-  const rows = [];
-  for (const st of ['pro', 'geo']) for (const run of ['gen', 'repair']) {
-    let fail = 0, mism = 0, ok = 0;
-    for (const pid of Object.keys(D.prompts[st])) {
-      const v = (run === 'repair' && D.repair[st].verdict[pid]) || D.gen[st].verdict[pid]; const e = expected(pid);
-      if (!v || v.stage !== 'ok') fail++; else if (e) { ok++; if (!close(v.bbox, e)) mism++; }
-    }
-    rows.push(`<tr><td>${st}</td><td>${run === 'gen' ? 'first attempt' : 'after one repair round'}</td><td>${fail}</td><td>${mism} of ${ok}</td></tr>`);
+function tally(st, run) {
+  let fail = 0, mism = 0, ok = 0;
+  for (const pid of ids) { const v = run === "gen" ? D.gen[st].verdict[pid] : latest(st, pid); const e = expected(pid);
+    if (!v || v.stage !== "ok") fail++; else if (e) { ok++; if (!close(v.bbox, e)) mism++; } }
+  return { fail, mism, ok };
+}
+const T = {}; for (const st of ["pro", "geo"]) for (const r of ["gen", "repair"]) T[st + r] = tally(st, r);
+const agreed = ids.filter(p => expected(p)).length;
+
+$("stats").innerHTML = [
+  ["Prompts", `${ids.length}`, "L1 60 · L2 61 · L3 30"],
+  ["Run failures (pro)", `${T.progen.fail}<span class="arrow">→</span>${T.prorepair.fail}`, "first attempt → after one repair round"],
+  ["Size mismatches (pro)", `${T.progen.mism}<span class="arrow">→</span>${T.prorepair.mism}`, `of parts with an agreed size that ran`],
+  ["Parts with an agreed size", `${agreed}<small> / ${ids.length}</small>`, "two separate readings of the text agree"],
+].map(([k, v, d]) => `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+
+{ const g = D.garbled_as_sent || { pro: [], geo: [] };
+  $("enccard").insertAdjacentHTML("beforeend", `The released CSV mixes UTF-8 with symbols stored in GBK (°, ±). The runs read the file as UTF-8, so ${g.pro.length} pro and ${g.geo.length} geo prompts reached the model with those symbols as broken characters. This page shows them decoded and marks the affected parts.`); }
+function bar(n, of) { return `<div class="bar"><i style="width:${Math.max(n ? 3 : 0, 100 * n / of)}%"></i></div>`; }
+$("restable").innerHTML = `<table class="res"><tr><th>Prompt style</th><th>Run</th><th>Fail to run or no valid solid</th><th>Size mismatches</th></tr>${
+  ["pro", "geo"].flatMap(st => ["gen", "repair"].map(r => { const t = T[st + r];
+    return `<tr><td>${st}</td><td>${r === "gen" ? "First attempt" : "After one repair round"}</td><td class="num">${t.fail} of ${ids.length}${bar(t.fail, 20)}</td><td class="num">${t.mism} of ${t.ok}${bar(t.mism, 20)}</td></tr>`; })).join("")
+}</table><div class="note">A repair round re-sends only the programs that failed a check: 7 for pro, 11 for geo. Bars share one scale (20).</div>`;
+
+function renderList() {
+  const q = S.q.toLowerCase();
+  const rows = ids.filter(p => (!S.level || p.startsWith(S.level + "_")) && (!S.only || firstWrong(S.style, p)) &&
+    (!q || p.toLowerCase().includes(q) || (D.prompts[S.style][p] || "").toLowerCase().includes(q)));
+  $("list").innerHTML = rows.map(p => { const j = judge(D.gen[S.style].verdict[p], expected(p));
+    return `<div class="item${p === S.pid ? " on" : ""}" data-p="${p}"><span class="dots"><span class="dot ${j.run}"></span><span class="dot ${j.size}"></span></span><span class="id">${p}</span><span class="lv">${p.split("_")[0]}</span></div>`; }).join("");
+  $("count").textContent = `${rows.length} of ${ids.length} parts · dots: execution, size (first attempt)`;
+  if (!rows.includes(S.pid)) select(rows[0]);
+}
+$("list").onclick = e => { const it = e.target.closest(".item"); if (it) select(it.dataset.p); };
+
+function pill(cls, text) { return `<span class="pill ${cls}">${text}</span>`; }
+function select(pid) {
+  if (!pid) return; S.pid = pid;
+  document.querySelectorAll(".item").forEach(x => x.classList.toggle("on", x.dataset.p === pid));
+  const e = expected(pid), g = judge(D.gen[S.style].verdict[pid], e), hasRep = !!D.repair[S.style].code[pid];
+  const r = hasRep ? judge(D.repair[S.style].verdict[pid], e) : null;
+  const cls = j => j.run === "bad" || j.size === "bad" ? "bad" : j.run === "ok" ? "ok" : "na";
+  $("dhead").innerHTML = `<h3>${pid}</h3>${pill(cls(g), "First attempt · " + g.text)}${hasRep ? pill(cls(r), "After repair · " + r.text) : pill("na", "No repair needed")}`;
+  const line = (lab, val) => `<div class="row"><div class="lab">${lab}</div><div>${val}</div></div>`;
+  $("facts").innerHTML = line("Level", { L1: "L1 · simple", L2: "L2 · medium", L3: "L3 · hard" }[pid.split("_")[0]]) +
+    line("Expected size", e ? `<span class="mono">${fmt(e)}</span>` : `<span style="color:var(--muted)">none (the two readings did not agree)</span>`) +
+    line("First attempt", g.box ? `<span class="mono">${fmt(g.box)}</span>` : `<span style="color:var(--bad)">${esc(g.err || g.text)}</span>`) +
+    line("After repair", !hasRep ? `<span style="color:var(--muted)">not needed</span>` : r.box ? `<span class="mono">${fmt(r.box)}</span>` : `<span style="color:var(--bad)">${esc(r.err || r.text)}</span>`) +
+    line("Prompt style", S.style === "pro" ? "step-by-step procedure" : "geometric description");
+  document.querySelector('#tabs [data-v="repair"]').disabled = !hasRep;
+  if (S.tab === "repair" && !hasRep) S.tab = "prompt";
+  if (S.view === "repair" && !hasRep) setView("gen"); else load();
+  renderPane();
+}
+function renderPane() {
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.v === S.tab));
+  if (S.tab === "prompt") {
+    const g = (D.garbled_as_sent || {})[S.style] || [];
+    $("pane").innerHTML = `<div class="prompt">${esc(D.prompts[S.style][S.pid] || "")}</div>` +
+      (g.includes(S.pid) ? `<div class="warnbox">The released CSV stores some symbols in this prompt (such as ° or ±) in a different encoding. The runs read them as broken characters, so the model saw this prompt with those symbols garbled. They are shown decoded here.</div>` : "");
+    return;
   }
-  $('summary').innerHTML = `<table><tr><th>Prompt style</th><th>Run</th><th>Programs that fail to run or give no valid solid (of 151)</th><th>Size mismatches (of parts with an agreed size that ran)</th></tr>${rows.join('')}</table>
-  <div class="muted" style="margin-top:8px">Counted in your browser from the committed verdicts. The same prompts generated twice differ by 2 run failures and 1 size mismatch (noise floor, see README). The size feedback quoted the expected box, so a size match after repair is measured by the check that guided it.</div>`;
+  const src = D[S.tab][S.style].code[S.pid] || "";
+  $("pane").innerHTML = `<pre><code class="language-python">${esc(src)}</code></pre>`;
+  if (window.hljs) hljs.highlightElement($("pane").querySelector("code"));
 }
+$("tabs").onclick = e => { const b = e.target.closest("button"); if (b && !b.disabled) { S.tab = b.dataset.v; renderPane(); } };
 
-function fillParts() {
-  const lvl = $('level').value, only = $('onlyfail').checked, cur = $('part').value;
-  const ids = Object.keys(D.prompts.pro).filter(p => (!lvl || p.startsWith(lvl + '_')) && (!only || firstWrong(style, p)));
-  $('part').innerHTML = ids.map(p => `<option>${p}</option>`).join('');
-  if (ids.includes(cur)) $('part').value = cur;
-  show();
-}
+function seg(id, key, after) { $(id).onclick = e => { const b = e.target.closest("button"); if (!b) return;
+  S[key] = b.dataset.v; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); after(); }; }
+seg("styleSeg", "style", renderList); seg("levelSeg", "level", renderList);
+function setView(v) { S.view = v; $("viewSeg").querySelectorAll("button").forEach(x => x.classList.toggle("on", x.dataset.v === v)); load(); }
+$("viewSeg").onclick = e => { const b = e.target.closest("button"); if (b) setView(b.dataset.v); };
+$("search").oninput = e => { S.q = e.target.value; renderList(); };
+$("onlyfail").onchange = e => { S.only = e.target.checked; renderList(); };
 
-function show() {
-  const pid = $('part').value; if (!pid) return;
-  const e = expected(pid), g = verdict(D.gen[style].verdict[pid], e);
-  const rep = D.repair[style].code[pid], r = rep ? verdict(D.repair[style].verdict[pid], e) : ['muted', 'not needed (the first attempt passed both checks)'];
-  $('prompt').textContent = D.prompts[style][pid] || '';
-  $('verdicts').innerHTML = `<div><b>First attempt:</b> <span class="${g[0]}">${g[1]}</span></div>
-    <div><b>After one repair round:</b> <span class="${r[0]}">${r[1]}</span></div>
-    <div><b>Expected size</b> (two separate readings of the text agree): ${e ? e.join(' × ') + ' mm' : 'none'}</div>`;
-  $('code1').textContent = D.gen[style].code[pid] || '';
-  $('code2').textContent = rep || '—';
-  load(`${view}_${style}_${pid}`);
-}
-
-const canvas = $('viewer'), renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(40, 1, 0.1, 10000);
-scene.add(new THREE.HemisphereLight(0xffffff, 0x666677, 2.2)); const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(1, 2, 3); scene.add(sun);
-const controls = new OrbitControls(camera, canvas); let mesh = null;
+const canvas = $("viewer"), renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(35, 1, 0.1, 10000);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8890a0, 2.0));
+const key = new THREE.DirectionalLight(0xffffff, 1.8); key.position.set(2, 3, 4); scene.add(key);
+const rim = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(-3, -1, -2); scene.add(rim);
+const controls = new OrbitControls(camera, canvas); controls.enableDamping = true; controls.autoRotate = true; controls.autoRotateSpeed = 1.2;
+controls.addEventListener("start", () => controls.autoRotate = false);
+let mesh = null, edges = null;
 function resize() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
 new ResizeObserver(resize).observe(canvas);
 (function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
-function load(key) {
-  if (mesh) { scene.remove(mesh); mesh.geometry.dispose(); mesh = null; }
-  if (!STL.has(key)) { $('viewnote').textContent = view === 'repair' && !key.startsWith('gen') && !D.repair[style].code[key.split('_').slice(2).join('_')] ? 'No repaired program for this part.' : `No 3D model: ${D.stl_errors[key] || 'the program does not build a solid'}`; return; }
-  $('viewnote').textContent = 'Drag to rotate, scroll to zoom.';
-  new STLLoader().load(`stl/${key}.stl`, geo => {
-    geo.computeVertexNormals(); geo.center(); geo.computeBoundingSphere();
-    mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x8aa4c8, metalness: 0.1, roughness: 0.6 })); scene.add(mesh);
-    const r = geo.boundingSphere.radius || 1; camera.position.set(r * 1.8, r * 1.4, r * 2.2); camera.near = r / 100; camera.far = r * 100; camera.updateProjectionMatrix(); controls.target.set(0, 0, 0);
+const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+function clear() { for (const m of [mesh, edges]) if (m) { scene.remove(m); m.geometry.dispose(); } mesh = edges = null; }
+function load() {
+  clear(); const keyName = `${S.view}_${S.style}_${S.pid}`;
+  if (S.view === "repair" && !D.repair[S.style].code[S.pid]) { $("vmsg").textContent = "No repaired program: the first attempt passed both checks."; return; }
+  if (!STL.has(keyName)) { const v = D[S.view][S.style].verdict[S.pid];
+    $("vmsg").textContent = v && v.stage !== "ok" ? "This program does not build a valid solid, so there is nothing to show." : "No 3D model was rendered for this program."; return; }
+  $("vmsg").textContent = "Loading…";
+  new STLLoader().load(`stl/${keyName}.stl`, geo => {
+    if (keyName !== `${S.view}_${S.style}_${S.pid}`) return;
+    $("vmsg").textContent = ""; geo.rotateX(-Math.PI / 2); geo.computeVertexNormals(); geo.center(); geo.computeBoundingSphere();
+    mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: dark ? 0x9fb4e6 : 0x5b7fd1, metalness: 0.15, roughness: 0.45 }));
+    edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 25), new THREE.LineBasicMaterial({ color: dark ? 0x0f1013 : 0x1b2a4a, transparent: true, opacity: 0.35 }));
+    scene.add(mesh, edges);
+    const r = geo.boundingSphere.radius || 1; camera.position.set(r * 1.9, r * 1.3, r * 2.3); camera.near = r / 100; camera.far = r * 100; camera.updateProjectionMatrix();
+    controls.target.set(0, 0, 0); controls.autoRotate = true;
   });
 }
-
-document.querySelectorAll('[data-style]').forEach(b => b.onclick = () => { style = b.dataset.style; document.querySelectorAll('[data-style]').forEach(x => x.classList.toggle('on', x === b)); fillParts(); });
-document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { view = b.dataset.view; document.querySelectorAll('[data-view]').forEach(x => x.classList.toggle('on', x === b)); show(); });
-$('level').onchange = fillParts; $('onlyfail').onchange = fillParts; $('part').onchange = show;
-summary(); fillParts();
+renderList();
 </script>
 </body>
 </html>
