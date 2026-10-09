@@ -86,7 +86,7 @@
   .facts .row { display: grid; grid-template-columns: 120px 1fr; gap: 10px; } .facts .lab { color: var(--muted); }
   .tabs { display: flex; gap: 4px; padding: 10px 12px 0; border-bottom: 1px solid var(--line); }
   .tabs button { border: 0; background: transparent; color: var(--muted); font: 500 14px Inter, sans-serif; padding: 8px 12px; border-bottom: 2px solid transparent; cursor: pointer; }
-  .tabs button.on { color: var(--fg); border-bottom-color: var(--accent); } .tabs button:disabled { opacity: .4; cursor: default; }
+  .tabs button.on { color: var(--fg); border-bottom-color: var(--accent); } .tabs button:disabled, .seg button:disabled { opacity: .4; cursor: help; }
   .pane { padding: 16px 20px 20px; } .prompt { white-space: pre-wrap; font-size: 14.5px; line-height: 1.7; }
   pre { margin: 0; max-height: 460px; overflow: auto; border-radius: 10px; border: 1px solid var(--line); font-size: 12.8px; line-height: 1.55; }
   pre code.hljs { padding: 14px 16px; background: var(--surface-2); }
@@ -170,7 +170,7 @@
           <div class="seg" id="styleSeg"><button data-v="pro" class="on">pro prompts</button><button data-v="geo">geo prompts</button></div>
           <div class="seg" id="levelSeg"><button data-v="" class="on">All</button><button data-v="L1">L1</button><button data-v="L2">L2</button><button data-v="L3">L3</button></div>
           <input class="search" id="search" placeholder="Search id or prompt text">
-          <label class="chk"><input type="checkbox" id="onlyfail"> Only parts the first attempt got wrong</label>
+          <label class="chk"><input type="checkbox" id="onlyfail"> Only parts the first attempt got wrong (these have a repaired program)</label>
         </div>
         <div class="list" id="list"></div>
         <div class="count" id="count"></div>
@@ -318,7 +318,9 @@ function select(pid) {
     line("First attempt", g.box ? `<span class="mono">${fmt(g.box)}</span>` : `<span style="color:var(--bad)">${esc(g.err || g.text)}</span>`) +
     line("After repair", !hasRep ? `<span style="color:var(--muted)">not needed</span>` : r.box ? `<span class="mono">${fmt(r.box)}</span>` : `<span style="color:var(--bad)">${esc(r.err || r.text)}</span>`) +
     line("Prompt style", S.style === "pro" ? "step-by-step procedure" : "geometric description");
-  document.querySelector('#tabs [data-v="repair"]').disabled = !hasRep;
+  for (const b of [document.querySelector('#tabs [data-v="repair"]'), document.querySelector('#viewSeg [data-v="repair"]')]) {
+    b.disabled = !hasRep; b.title = hasRep ? "" : "Only parts that failed a check on the first attempt were repaired (7 pro, 11 geo of 151). This part passed both checks.";
+  }
   if (S.tab === "repair" && !hasRep) S.tab = "prompt";
   if (S.view === "repair" && !hasRep) setView("gen"); else load();
   renderPane();
@@ -341,7 +343,7 @@ function seg(id, key, after) { $(id).onclick = e => { const b = e.target.closest
   S[key] = b.dataset.v; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); after(); }; }
 seg("styleSeg", "style", renderList); seg("levelSeg", "level", renderList);
 function setView(v) { S.view = v; $("viewSeg").querySelectorAll("button").forEach(x => x.classList.toggle("on", x.dataset.v === v)); load(); }
-$("viewSeg").onclick = e => { const b = e.target.closest("button"); if (b) setView(b.dataset.v); };
+$("viewSeg").onclick = e => { const b = e.target.closest("button"); if (b && !b.disabled) setView(b.dataset.v); };
 $("search").oninput = e => { S.q = e.target.value; renderList(); };
 $("onlyfail").onchange = e => { S.only = e.target.checked; renderList(); };
 
@@ -361,7 +363,7 @@ const dark = matchMedia("(prefers-color-scheme: dark)").matches;
 function clear() { for (const m of [mesh, edges]) if (m) { scene.remove(m); m.geometry.dispose(); } mesh = edges = null; }
 function load() {
   clear(); const keyName = `${S.view}_${S.style}_${S.pid}`;
-  if (S.view === "repair" && !D.repair[S.style].code[S.pid]) { $("vmsg").textContent = "No repaired program: the first attempt passed both checks."; return; }
+  if (S.view === "repair" && !D.repair[S.style].code[S.pid]) { $("vmsg").textContent = "Only parts that failed a check on the first attempt were repaired (7 pro, 11 geo of 151). This part passed both checks."; return; }
   if (!STL.has(keyName)) { const v = D[S.view][S.style].verdict[S.pid];
     $("vmsg").textContent = v && v.stage !== "ok" ? "This program does not build a valid solid, so there is nothing to show." : "No 3D model was rendered for this program."; return; }
   $("vmsg").textContent = "Loading…";
