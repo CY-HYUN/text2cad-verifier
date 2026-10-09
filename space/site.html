@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>text2cad-verifier demo</title>
+<style>
+  :root { --bg:#fbfbfa; --fg:#1d1d1f; --muted:#6b6b70; --line:#e2e2e0; --card:#ffffff; --ok:#1f7a3a; --bad:#b3261e; --accent:#2457c5; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#151517; --fg:#ececee; --muted:#9a9aa0; --line:#2c2c30; --card:#1d1d20; --ok:#5cc27d; --bad:#ff7b72; --accent:#7aa2ff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width:1100px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:26px; margin:0 0 6px; } h2 { font-size:18px; margin:28px 0 10px; }
+  p.lead { color:var(--muted); margin:0 0 16px; max-width:800px; }
+  a { color:var(--accent); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; }
+  th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:12px; }
+  select, button { font:inherit; padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:var(--card); color:var(--fg); }
+  button.on { border-color:var(--accent); color:var(--accent); }
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  pre { margin:0; padding:10px; overflow:auto; max-height:360px; font:12.5px/1.45 ui-monospace, Consolas, monospace; background:var(--bg); border:1px solid var(--line); border-radius:8px; white-space:pre; }
+  .prompt { white-space:pre-wrap; font-size:14px; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+  #viewer { width:100%; height:420px; border:1px solid var(--line); border-radius:8px; background:var(--bg); touch-action:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>text2cad-verifier</h1>
+  <p class="lead">How often does a frontier LLM (<code>claude-opus-5-5</code>) write CadQuery code that runs, and does the part come out
+  the right size? 151 prompts from the public preview of <a href="https://huggingface.co/datasets/AICAD/Text2CAD-Bench">Text2CAD-Bench</a>
+  (CC BY 4.0), two verifiers, one repair round. Code, method and limits: <a href="https://github.com/CY-HYUN/text2cad-verifier">GitHub</a>
+  · <a href="https://github.com/CY-HYUN/text2cad-verifier/blob/main/docs/case_study.md">one-page case study</a>.
+  This page shows the committed runs; it runs no model and no CAD code.</p>
+
+  <div class="card" id="summary"></div>
+
+  <h2>Browse the parts</h2>
+  <div class="controls">
+    <label>Level <select id="level"><option value="">all</option><option>L1</option><option>L2</option><option>L3</option></select></label>
+    <label>Part <select id="part"></select></label>
+    <span>Prompt style
+      <button data-style="pro" class="on">pro (step by step)</button>
+      <button data-style="geo">geo (geometric)</button></span>
+    <label><input type="checkbox" id="onlyfail"> only parts the first attempt got wrong</label>
+  </div>
+  <div class="card"><div class="prompt" id="prompt"></div></div>
+  <div class="card" style="margin-top:12px" id="verdicts"></div>
+  <div class="grid" style="margin-top:12px">
+    <div><div class="controls"><span>3D view</span>
+      <button data-view="gen" class="on">first attempt</button><button data-view="repair">after repair</button></div>
+      <canvas id="viewer"></canvas><div class="muted" id="viewnote"></div></div>
+    <div><div class="muted">First attempt</div><pre id="code1"></pre>
+      <div class="muted" style="margin-top:10px">After the verifier's feedback (only for parts that failed a check)</div><pre id="code2"></pre></div>
+  </div>
+</main>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from "three";
+import { STLLoader } from "three/addons/loaders/STLLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+const D = await (await fetch("data.json")).json();
+const STL = new Set(D.stl);
+let style = "pro", view = "gen";
+const $ = id => document.getElementById(id);
+
+const close = (got, exp) => [...got].sort((a,b)=>a-b).every((g,i)=>Math.abs(g - [...exp].sort((a,b)=>a-b)[i]) <= Math.max(0.5, 0.02*[...exp].sort((a,b)=>a-b)[i]));
+const expected = pid => { const s = D.spec[pid]; return s && s.agree ? s.bbox : null; };
+function verdict(v, exp) {
+  if (!v) return ['muted', 'not run'];
+  if (v.stage !== 'ok') return ['bad', `fails at ${v.stage}: ${v.error || ''}`];
+  if (!exp) return ['ok', `runs, valid solid, box ${v.bbox.join(' × ')} mm (no agreed size to compare)`];
+  return close(v.bbox, exp) ? ['ok', `runs, valid solid, box ${v.bbox.join(' × ')} mm, size matches`]
+                            : ['bad', `runs, but box ${v.bbox.join(' × ')} mm, expected ${exp.join(' × ')} mm`];
+}
+const firstWrong = (st, pid) => { const v = D.gen[st].verdict[pid], e = expected(pid); return !v || v.stage !== 'ok' || (e && !close(v.bbox, e)); };
+
+function summary() {
+  const rows = [];
+  for (const st of ['pro', 'geo']) for (const run of ['gen', 'repair']) {
+    let fail = 0, mism = 0, ok = 0;
+    for (const pid of Object.keys(D.prompts[st])) {
+      const v = (run === 'repair' && D.repair[st].verdict[pid]) || D.gen[st].verdict[pid]; const e = expected(pid);
+      if (!v || v.stage !== 'ok') fail++; else if (e) { ok++; if (!close(v.bbox, e)) mism++; }
+    }
+    rows.push(`<tr><td>${st}</td><td>${run === 'gen' ? 'first attempt' : 'after one repair round'}</td><td>${fail}</td><td>${mism} of ${ok}</td></tr>`);
+  }
+  $('summary').innerHTML = `<table><tr><th>Prompt style</th><th>Run</th><th>Programs that fail to run or give no valid solid (of 151)</th><th>Size mismatches (of parts with an agreed size that ran)</th></tr>${rows.join('')}</table>
+  <div class="muted" style="margin-top:8px">Counted in your browser from the committed verdicts. The same prompts generated twice differ by 2 run failures and 1 size mismatch (noise floor, see README). The size feedback quoted the expected box, so a size match after repair is measured by the check that guided it.</div>`;
+}
+
+function fillParts() {
+  const lvl = $('level').value, only = $('onlyfail').checked, cur = $('part').value;
+  const ids = Object.keys(D.prompts.pro).filter(p => (!lvl || p.startsWith(lvl + '_')) && (!only || firstWrong(style, p)));
+  $('part').innerHTML = ids.map(p => `<option>${p}</option>`).join('');
+  if (ids.includes(cur)) $('part').value = cur;
+  show();
+}
+
+function show() {
+  const pid = $('part').value; if (!pid) return;
+  const e = expected(pid), g = verdict(D.gen[style].verdict[pid], e);
+  const rep = D.repair[style].code[pid], r = rep ? verdict(D.repair[style].verdict[pid], e) : ['muted', 'not needed (the first attempt passed both checks)'];
+  $('prompt').textContent = D.prompts[style][pid] || '';
+  $('verdicts').innerHTML = `<div><b>First attempt:</b> <span class="${g[0]}">${g[1]}</span></div>
+    <div><b>After one repair round:</b> <span class="${r[0]}">${r[1]}</span></div>
+    <div><b>Expected size</b> (two separate readings of the text agree): ${e ? e.join(' × ') + ' mm' : 'none'}</div>`;
+  $('code1').textContent = D.gen[style].code[pid] || '';
+  $('code2').textContent = rep || '—';
+  load(`${view}_${style}_${pid}`);
+}
+
+const canvas = $('viewer'), renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(40, 1, 0.1, 10000);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x666677, 2.2)); const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(1, 2, 3); scene.add(sun);
+const controls = new OrbitControls(camera, canvas); let mesh = null;
+function resize() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+new ResizeObserver(resize).observe(canvas);
+(function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+function load(key) {
+  if (mesh) { scene.remove(mesh); mesh.geometry.dispose(); mesh = null; }
+  if (!STL.has(key)) { $('viewnote').textContent = view === 'repair' && !key.startsWith('gen') && !D.repair[style].code[key.split('_').slice(2).join('_')] ? 'No repaired program for this part.' : `No 3D model: ${D.stl_errors[key] || 'the program does not build a solid'}`; return; }
+  $('viewnote').textContent = 'Drag to rotate, scroll to zoom.';
+  new STLLoader().load(`stl/${key}.stl`, geo => {
+    geo.computeVertexNormals(); geo.center(); geo.computeBoundingSphere();
+    mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x8aa4c8, metalness: 0.1, roughness: 0.6 })); scene.add(mesh);
+    const r = geo.boundingSphere.radius || 1; camera.position.set(r * 1.8, r * 1.4, r * 2.2); camera.near = r / 100; camera.far = r * 100; camera.updateProjectionMatrix(); controls.target.set(0, 0, 0);
+  });
+}
+
+document.querySelectorAll('[data-style]').forEach(b => b.onclick = () => { style = b.dataset.style; document.querySelectorAll('[data-style]').forEach(x => x.classList.toggle('on', x === b)); fillParts(); });
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => { view = b.dataset.view; document.querySelectorAll('[data-view]').forEach(x => x.classList.toggle('on', x === b)); show(); });
+$('level').onchange = fillParts; $('onlyfail').onchange = fillParts; $('part').onchange = show;
+summary(); fillParts();
+</script>
+</body>
+</html>

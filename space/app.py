@@ -18,7 +18,7 @@ import t2c  # noqa: E402
 
 # Built by build_data.py. The Space holds only the code; it reads the data file from the GitHub repo at a fixed commit.
 DATA_URL = "https://raw.githubusercontent.com/CY-HYUN/text2cad-verifier/{ref}/space/demo_data.json"
-DATA_REF = "main"
+DATA_REF = "418947479cb75a84bb971c76cf79449a9ad2ff75"  # commit that holds the demo_data.json this page was tested with
 
 
 def load_data() -> dict:
@@ -152,3 +152,4 @@ with gr.Blocks(title="text2cad-verifier") as demo:
 
 if __name__ == "__main__":
     demo.launch()
+

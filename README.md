@@ -5,6 +5,7 @@ And does one round of feedback from a verifier fix what it gets wrong?
 
 This repo measures both on the public preview of Text2CAD-Bench, with a model writing CadQuery (Python) code
 through the Anthropic Message Batches API. One-page summary: [docs/case_study.md](docs/case_study.md).
+Browse every part, its program, both verdicts and a 3D view: [demo page](https://cy-hyun.github.io/text2cad-verifier/demo/).
 
 ## What is measured
 
