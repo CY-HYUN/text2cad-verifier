@@ -5,3 +5,4 @@ __pycache__/
 runs/
 *.step
 *.stl
+!docs/demo/stl/*.stl
