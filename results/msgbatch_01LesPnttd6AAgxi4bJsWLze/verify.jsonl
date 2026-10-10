@@ -1,0 +1,151 @@
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L1_1"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120000.0, "bbox": [100.0, 50.0, 30.0], "faces": 10, "id": "L1_10", "dims": "match", "expected_bbox": [30.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 109955.743, "bbox": [60.0, 60.0, 40.0], "faces": 4, "id": "L1_11", "dims": "match", "expected_bbox": [40.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 81925.877, "bbox": [90.0, 90.0, 15.0], "faces": 7, "id": "L1_12", "dims": "match", "expected_bbox": [15.0, 90.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 35415.927, "bbox": [30.0, 30.0, 80.0], "faces": 5, "id": "L1_13", "dims": "mismatch", "expected_bbox": [20.0, 50.0, 80.0]}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'cone'", "id": "L1_14"}
+{"stage": "run", "error": "AttributeError: 'Plane' object has no attribute 'offset'", "id": "L1_15"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 46429.204, "bbox": [120.0, 40.0, 10.0], "faces": 8, "id": "L1_16", "dims": "match", "expected_bbox": [10.0, 40.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36000.0, "bbox": [60.0, 30.0, 20.0], "faces": 6, "id": "L1_17", "dims": "match", "expected_bbox": [20.0, 30.0, 60.0]}
+{"stage": "run", "error": "TypeError: 'Plane' object is not callable", "id": "L1_18"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 62831.853, "bbox": [80.0, 80.0, 20.0], "faces": 8, "id": "L1_19", "dims": "match", "expected_bbox": [20.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 91891.585, "bbox": [40.0, 40.0, 120.0], "faces": 4, "id": "L1_2", "dims": "match", "expected_bbox": [40.0, 40.0, 120.0]}
+{"stage": "run", "error": "ValueError: Null TopoDS_Shape object", "id": "L1_20"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 150796.447, "bbox": [50.0, 50.0, 80.0], "faces": 7, "id": "L1_21", "dims": "match", "expected_bbox": [50.0, 50.0, 80.0]}
+{"stage": "run", "error": "TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments but 4 were given", "id": "L1_22"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 126815.453, "bbox": [70.0, 50.0, 50.0], "faces": 4, "id": "L1_23", "dims": "mismatch", "expected_bbox": [50.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 40000.0, "bbox": [50.0, 40.0, 60.0], "faces": 10, "id": "L1_24", "dims": "match", "expected_bbox": [40.0, 50.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 50265.482, "bbox": [40.0, 40.0, 40.0], "faces": 3, "id": "L1_25", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 38877.209, "bbox": [60.0, 60.0, 15.0], "faces": 3, "id": "L1_26", "dims": "mismatch", "expected_bbox": [45.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 31000.0, "bbox": [100.0, 20.0, 37.5], "faces": 8, "id": "L1_27", "dims": "mismatch", "expected_bbox": [20.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 97295.969, "bbox": [60.0, 60.0, 60.0], "faces": 7, "id": "L1_28", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 43982.297, "bbox": [60.0, 60.0, 30.0], "faces": 7, "id": "L1_29", "dims": "match", "expected_bbox": [30.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 109292.037, "bbox": [50.0, 50.0, 50.0], "faces": 7, "id": "L1_3", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 41626.103, "bbox": [30.0, 30.0, 60.0], "faces": 6, "id": "L1_30", "dims": "match", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 46560.356, "bbox": [50.0, 50.0, 45.826], "faces": 5, "id": "L1_31", "dims": "match", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "run", "error": "TypeError: 'Plane' object is not callable", "id": "L1_32"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 78539.816, "bbox": [60.0, 30.0, 100.0], "faces": 6, "id": "L1_33", "dims": "match", "expected_bbox": [30.0, 60.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 180000.0, "bbox": [100.0, 60.0, 40.0], "faces": 10, "id": "L1_34", "dims": "match", "expected_bbox": [40.0, 60.0, 100.0]}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'cone'", "id": "L1_35"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 75398.224, "bbox": [80.0, 80.0, 20.0], "faces": 4, "id": "L1_36", "dims": "match", "expected_bbox": [20.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 67919.106, "bbox": [80.0, 80.0, 15.0], "faces": 15, "id": "L1_37", "dims": "match", "expected_bbox": [15.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 72000.0, "bbox": [60.0, 30.0, 80.0], "faces": 6, "id": "L1_38", "dims": "match", "expected_bbox": [30.0, 60.0, 80.0]}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 61699.112, "bbox": [100.0, 40.0, 40.0], "faces": 13, "id": "L1_39", "dims": "mismatch", "expected_bbox": [10.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 138230.077, "bbox": [80.0, 80.0, 50.0], "faces": 5, "id": "L1_4", "dims": "match", "expected_bbox": [50.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 31747.889, "bbox": [37.5, 37.5, 60.0], "faces": 9, "id": "L1_40", "dims": "mismatch", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 75398.224, "bbox": [100.0, 100.0, 10.0], "faces": 7, "id": "L1_41", "dims": "match", "expected_bbox": [10.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 525.114, "bbox": [10.263, 28.465, 5.925], "faces": 3, "id": "L1_42", "dims": "mismatch", "expected_bbox": [30.0, 30.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90000.0, "bbox": [100.0, 50.0, 30.0], "faces": 10, "id": "L1_43", "dims": "match", "expected_bbox": [30.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 47506.639, "bbox": [40.0, 40.0, 40.0], "faces": 9, "id": "L1_44", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 127758.101, "bbox": [100.0, 100.0, 50.0], "faces": 3, "id": "L1_45", "dims": "match", "expected_bbox": [50.0, 100.0, 100.0]}
+{"stage": "run", "error": "TypeError: Workplane.polygon() missing 1 required positional argument: 'diameter'", "id": "L1_46"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 99041.406, "bbox": [40.0, 40.0, 80.0], "faces": 8, "id": "L1_47", "dims": "match", "expected_bbox": [39.68, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 38283.185, "bbox": [40.0, 40.0, 40.0], "faces": 8, "id": "L1_48", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "run", "error": "AttributeError: type object 'Solid' has no attribute 'makeCube'", "id": "L1_49"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 71342.917, "bbox": [60.0, 60.0, 60.0], "faces": 8, "id": "L1_5", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 28749.26, "bbox": [60.0, 20.0, 50.0], "faces": 5, "id": "L1_50", "dims": "mismatch", "expected_bbox": [20.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 26814.96, "bbox": [58.333, 60.0, 10.0], "faces": 4, "id": "L1_51"}
+{"stage": "run", "error": "ValueError: Arc radius is not large enough to reach the end point.", "id": "L1_52"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L1_53"}
+{"stage": "run", "error": "TypeError: Solid.makeSphere() got an unexpected keyword argument 'zMin'", "id": "L1_54"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 126862.794, "bbox": [70.0, 70.0, 60.0], "faces": 6, "id": "L1_55", "dims": "match", "expected_bbox": [60.0, 69.015, 69.015]}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'pocket'", "id": "L1_56"}
+{"stage": "run", "error": "ParseException: Expected {{'XY' | 'XZ' | 'X' | 'YZ' | 'Y' | 'Z' | Combine:({'(' Combine:({Combine:({['+' | '-'] W:(0-9)}) ['.' [W:(0-9)]]}) ',' Combine:({Combine:({['+' | '-'] W:(0-9)}) ['.' [W:(0-9)]]}) ',' Combine:({Combine:({['+' | '-'] W:(0-9)}) ['.' [W:(0-9)]]}) ')'})} | {'%' 'PARABOLA' | 'REVOLUTION' | 'CONE' | 'BSPLINE' | 'HYPERBOLA' | 'CYLINDER' | 'TORUS' | 'SPHERE' | 'EXTRUSION' | 'LINE' ", "id": "L1_57"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 112992.349, "bbox": [90.0, 50.0, 30.0], "faces": 42, "id": "L1_58", "dims": "match", "expected_bbox": [30.0, 50.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 226194.671, "bbox": [60.0, 60.0, 80.0], "faces": 3, "id": "L1_59", "dims": "match", "expected_bbox": [60.0, 60.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 29452.431, "bbox": [100.0, 100.0, 5.0], "faces": 4, "id": "L1_6", "dims": "match", "expected_bbox": [5.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90765.177, "bbox": [100.0, 100.0, 12.0], "faces": 12, "id": "L1_60", "dims": "match", "expected_bbox": [12.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 72000.0, "bbox": [100.0, 100.0, 20.0], "faces": 14, "id": "L1_7", "dims": "match", "expected_bbox": [20.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 244480.827, "bbox": [80.0, 80.0, 40.0], "faces": 8, "id": "L1_8", "dims": "match", "expected_bbox": [40.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 104029.317, "bbox": [50.0, 50.0, 135.0], "faces": 4, "id": "L1_9", "dims": "mismatch", "expected_bbox": [40.0, 40.0, 135.0]}
+{"stage": "ok", "solids": 4, "valid": true, "volume": 6136.109, "bbox": [50.0, 50.0, 50.0], "faces": 20, "id": "L2_1", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 53368.413, "bbox": [80.0, 40.0, 45.0], "faces": 17, "id": "L2_10"}
+{"stage": "run", "error": "TypeError: Workplane.moveTo() takes from 1 to 3 positional arguments but 4 were given", "id": "L2_11"}
+{"stage": "run", "error": "ValueError: Cannot find a solid on the stack or in the parent chain", "id": "L2_12"}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 79623.032, "bbox": [59.49, 59.948, 59.945], "faces": 76, "id": "L2_13", "dims": "mismatch", "expected_bbox": [56.05, 56.05, 56.05]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 112000.0, "bbox": [60.0, 60.0, 60.0], "faces": 18, "id": "L2_14", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 42265.482, "bbox": [80.0, 80.0, 10.0], "faces": 19, "id": "L2_15", "dims": "match", "expected_bbox": [10.0, 79.8, 79.8]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 58798.799, "bbox": [95.0, 95.0, 47.913], "faces": 31, "id": "L2_16", "dims": "mismatch", "expected_bbox": [47.905, 90.0, 90.0]}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 95143.798, "bbox": [80.0, 80.0, 50.0], "faces": 22, "id": "L2_17"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 78050.959, "bbox": [100.0, 40.0, 30.0], "faces": 20, "id": "L2_18", "dims": "match", "expected_bbox": [30.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 31991.716, "bbox": [50.0, 40.0, 50.0], "faces": 41, "id": "L2_19", "dims": "mismatch", "expected_bbox": [40.0, 40.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 227898.858, "bbox": [80.0, 80.0, 80.0], "faces": 2, "id": "L2_2", "dims": "match", "expected_bbox": [80.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120190.438, "bbox": [50.0, 50.0, 50.0], "faces": 7, "id": "L2_20", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120551.252, "bbox": [100.0, 100.0, 35.0], "faces": 9, "id": "L2_21"}
+{"stage": "run", "error": "AttributeError: 'Edge' object has no attribute 'direction'", "id": "L2_22"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 11437.983, "bbox": [55.0, 55.0, 70.0], "faces": 14, "id": "L2_23"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 58838.147, "bbox": [40.0, 40.0, 60.0], "faces": 6, "id": "L2_24", "dims": "match", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'rotated'", "id": "L2_25"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 85761.614, "bbox": [100.0, 100.0, 57.5], "faces": 36, "id": "L2_26", "dims": "mismatch", "expected_bbox": [60.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32525.061, "bbox": [30.0, 30.0, 50.0], "faces": 12, "id": "L2_27", "dims": "match", "expected_bbox": [30.0, 30.0, 50.0]}
+{"stage": "ok", "solids": 4, "valid": true, "volume": 48578.779, "bbox": [60.0, 60.0, 60.0], "faces": 30, "id": "L2_28", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 100530.965, "bbox": [100.0, 100.0, 20.0], "faces": 4, "id": "L2_29", "dims": "match", "expected_bbox": [20.0, 100.0, 100.0]}
+{"stage": "run", "error": "TypeError: 'Plane' object is not callable", "id": "L2_3"}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L2_30"}
+{"stage": "run", "error": "TypeError: Workplane.box() got an unexpected keyword argument 'xDim'", "id": "L2_31"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 34438.013, "bbox": [40.0, 37.321, 30.0], "faces": 8, "id": "L2_32"}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 39140.39, "bbox": [100.0, 100.0, 20.567], "faces": 58, "id": "L2_33"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 14973.185, "bbox": [20.0, 20.0, 50.0], "faces": 7, "id": "L2_34", "dims": "match", "expected_bbox": [20.0, 20.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 197150.444, "bbox": [60.0, 60.0, 60.0], "faces": 10, "id": "L2_35", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120762.822, "bbox": [120.0, 120.0, 20.0], "faces": 22, "id": "L2_36", "dims": "match", "expected_bbox": [20.0, 120.0, 120.0]}
+{"stage": "run", "error": "AttributeError: 'Solid' object has no attribute 'union'", "id": "L2_37"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 228206.869, "bbox": [75.0, 105.0, 120.0], "faces": 12, "id": "L2_38", "dims": "mismatch", "expected_bbox": [50.0, 80.0, 120.0]}
+{"stage": "run", "error": "ValueError: If multiple objects selected, they all must be planar faces.", "id": "L2_39"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 209188.048, "bbox": [100.0, 100.0, 62.5], "faces": 22, "id": "L2_4", "dims": "mismatch", "expected_bbox": [55.0, 100.0, 100.0]}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L2_40", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 42619.916, "bbox": [30.129, 30.0, 60.003], "faces": 91, "dims": "match", "expected_bbox": [30.0, 30.0, 60.0], "id": "L2_40_dup2", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'cone'", "id": "L2_41"}
+{"stage": "run", "error": "TypeError: Workplane.polygon() got an unexpected keyword argument 'circumradius'", "id": "L2_42"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 45132.741, "bbox": [60.0, 60.0, 30.0], "faces": 13, "id": "L2_43"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 78000.0, "bbox": [60.0, 60.0, 45.0], "faces": 46, "id": "L2_44", "dims": "mismatch", "expected_bbox": [50.0, 60.0, 60.0]}
+{"stage": "run", "error": "TypeError: Workplane.revolve() got an unexpected keyword argument 'axis'", "id": "L2_45"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 190851.754, "bbox": [90.0, 60.0, 60.0], "faces": 2, "id": "L2_46"}
+{"stage": "run", "error": "TypeError: Expected three floats, OCC gp_, or 3-tuple", "id": "L2_47"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 110862.833, "bbox": [50.0, 50.0, 50.0], "faces": 7, "id": "L2_48", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "run", "error": "TypeError: Workplane.revolve() got an unexpected keyword argument 'angle'", "id": "L2_49"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 8310.045, "bbox": [65.543, 24.0, 108.301], "faces": 18, "id": "L2_5"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 73394.235, "bbox": [100.0, 40.0, 40.0], "faces": 12, "id": "L2_50"}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L2_51"}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'wrapped'", "id": "L2_52"}
+{"stage": "run", "error": "AttributeError: 'Compound' object has no attribute 'union'", "id": "L2_53"}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'point'", "id": "L2_54"}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'makePolygon'", "id": "L2_55"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 50355.344, "bbox": [104.0, 44.0, 104.0], "faces": 20, "id": "L2_56", "dims": "mismatch", "expected_bbox": [40.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 206328.97, "bbox": [100.0, 100.0, 30.0], "faces": 21, "id": "L2_57", "dims": "match", "expected_bbox": [30.0, 99.0, 99.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 124858.407, "bbox": [80.0, 40.0, 40.0], "faces": 8, "id": "L2_58", "dims": "match", "expected_bbox": [40.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 116141.946, "bbox": [50.0, 50.0, 50.0], "faces": 18, "id": "L2_59", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 54434.735, "bbox": [30.0, 30.0, 80.0], "faces": 210, "dims": "match", "expected_bbox": [30.0, 30.0, 80.0], "id": "L2_6", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'cone'", "id": "L2_60"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 52980.038, "bbox": [140.0, 60.0, 15.0], "faces": 14, "id": "L2_7"}
+{"stage": "run", "error": "AttributeError: 'Solid' object has no attribute 'union'", "id": "L2_8"}
+{"stage": "run", "error": "TypeError: Expected three floats, OCC gp_, or 3-tuple", "id": "L2_9"}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L3_1"}
+{"stage": "run", "error": "Standard_ConstructionError: ", "id": "L3_10"}
+{"stage": "run", "error": "TypeError: Workplane.loft() got multiple values for argument 'ruled'", "id": "L3_11"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_12"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90066.32, "bbox": [66.0, 66.0, 30.0], "faces": 12, "id": "L3_13", "dims": "match", "expected_bbox": [30.0, 66.0, 66.0]}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L3_14", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L3_15"}
+{"stage": "run", "error": "TypeError: Workplane.loft() got multiple values for argument 'ruled'", "id": "L3_16"}
+{"stage": "run", "error": "TypeError: Workplane.cylinder() got an unexpected keyword argument 'length'", "id": "L3_17"}
+{"stage": "run", "error": "TypeError: Workplane.spline() got an unexpected keyword argument 'forceD'", "id": "L3_18"}
+{"stage": "safety", "error": "syntax: closing parenthesis ')' does not match opening parenthesis '[' (line 116)", "id": "L3_19"}
+{"stage": "run", "error": "ValueError: Cannot build face(s): wires not planar", "id": "L3_2"}
+{"stage": "run", "error": "TypeError: Solid.makeLoft() got an unexpected keyword argument 'issolid'", "id": "L3_20"}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L3_21"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_22"}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L3_23"}
+{"stage": "run", "error": "Standard_Failure: There are no suitable edges for chamfer or fillet", "id": "L3_24"}
+{"stage": "run", "error": "TypeError: Expected three floats, OCC gp_, or 3-tuple", "id": "L3_25"}
+{"stage": "run", "error": "Standard_Failure: There are no suitable edges for chamfer or fillet", "id": "L3_26"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 366672.095, "bbox": [135.0, 135.0, 130.0], "faces": 151, "id": "L3_27", "dims": "mismatch", "expected_bbox": [110.0, 110.0, 120.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 439244.006, "bbox": [150.0, 100.0, 195.0], "faces": 27, "id": "L3_28"}
+{"stage": "run", "error": "TypeError: Wire.makePolygon() got an unexpected keyword argument 'forceCloseWire'", "id": "L3_29"}
+{"stage": "run", "error": "ValueError: math domain error", "id": "L3_3"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 562797.76, "bbox": [150.0, 200.0, 45.0], "faces": 46, "id": "L3_30", "dims": "mismatch", "expected_bbox": [45.0, 100.0, 150.0]}
+{"stage": "run", "error": "TypeError: Wire.makePolygon() got an unexpected keyword argument 'forceWire'", "id": "L3_4"}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'ellipsoid'", "id": "L3_5"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 123992.396, "bbox": [40.0, 40.0, 100.0], "faces": 2581, "dims": "match", "expected_bbox": [40.0, 40.0, 100.0], "id": "L3_6", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "ValueError: too many values to unpack (expected 2)", "id": "L3_7"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_8"}
+{"stage": "run", "error": "AttributeError: 'Wire' object has no attribute 'Edge'", "id": "L3_9"}

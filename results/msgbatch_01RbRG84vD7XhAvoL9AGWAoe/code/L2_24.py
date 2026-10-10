@@ -1,0 +1,12 @@
+import cadquery as cq
+
+# Outer body: cylinder D40 x H60, base on the XY plane
+body = cq.Workplane("XY").circle(20).extrude(60)
+
+# Internal spherical cavity D30, centred at the cylinder's geometric centre
+cavity = cq.Workplane("XY").sphere(15).translate((0, 0, 30))
+
+# Neck: D10 hole from the top face down into the cavity
+neck = cq.Workplane("XY").workplane(offset=30).circle(5).extrude(31)
+
+result = body.cut(cavity).cut(neck)

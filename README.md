@@ -94,6 +94,7 @@ feedback only quoted the error.
 - The expected size is a model's reading of the text, not a measurement. Agreement between two separately written
   descriptions makes a misreading less likely, not impossible. A hand check of six agreed sizes, two per level,
   found all six right (seed 20261008).
-- One repeat run (pro style) measures the noise; geo has no repeat.
+- One repeat run per style measures the noise (geo repeated on 2026-10-10, see the
+  [case study appendix](docs/case_study.md#appendix-2026-10-10-other-generators-a-geo-repeat-and-the-encoding-fix)).
 - No ground-truth geometry: the benchmark's STEP files are not public, so neither IoU nor Chamfer distance is reported.
 - A run that timed out depends on the machine; the 180 s re-run is this repo's rule, not the benchmark's.

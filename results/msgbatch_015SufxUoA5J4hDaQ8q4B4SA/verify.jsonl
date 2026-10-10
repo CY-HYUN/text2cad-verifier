@@ -1,0 +1,8 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32000.0, "bbox": [100.0, 20.0, 40.0], "faces": 8, "id": "L1_27", "dims": "match", "expected_bbox": [20.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27625.488, "bbox": [45.826, 50.0, 50.0], "faces": 10, "id": "L2_31", "dims": "match", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "run", "error": "NameError: name 'shell' is not defined", "id": "L2_40"}
+{"stage": "result", "error": "no variable named result", "id": "L2_40_dup2"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 22463.298, "bbox": [45.0, 45.0, 100.0], "faces": 8, "id": "L2_45", "dims": "match", "expected_bbox": [45.0, 45.0, 100.0]}
+{"stage": "result", "error": "no variable named result", "id": "L3_12"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 676924.921, "bbox": [200.0, 200.0, 130.0], "faces": 8, "id": "L3_5", "dims": "match", "expected_bbox": [130.0, 200.0, 200.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 582582.046, "bbox": [80.012, 80.0, 150.0], "faces": 3, "id": "L3_9", "dims": "match", "expected_bbox": [80.0, 80.0, 150.0]}

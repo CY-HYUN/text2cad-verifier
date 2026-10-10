@@ -1,6 +1,8 @@
 """Text-to-CadQuery with an execution verifier and one repair round, on the public Text2CAD-Bench preview.
 
     uv run python t2c.py submit  --style pro --limit 10      # send a generation batch (Message Batches API)
+    uv run python t2c.py submit  --style pro --model claude-sonnet-5-5   # another generator; results stay keyed by batch id
+    uv run python t2c.py submit  --style pro --fix-encoding  # only the prompts whose GBK symbols were garbled, now decoded
     uv run python t2c.py fetch   <batch_id>                  # save the results under runs/<batch_id>/code/
     uv run python t2c.py spec                                # one batch: each part's overall size, read from both texts
     uv run python t2c.py fetch   <spec_batch_id>             # writes runs/<spec_batch_id>/spec.json
@@ -17,6 +19,7 @@ The API key is read from %USERPROFILE%/.anthropic/text2cad_api.env (one line, th
 client only; it is never printed or put in the environment, so Claude Code's own login is untouched.
 """
 import ast
+import codecs
 import csv
 import json
 import os
@@ -49,8 +52,22 @@ def client():
     return anthropic.Anthropic(api_key=key)
 
 
-def prompts(style: str, limit: int | None):
-    rows = list(csv.DictReader(open(ROOT / "data" / "release.csv", encoding="utf-8-sig", errors="replace")))
+def gbk_fix(err):
+    """The released CSV mixes UTF-8 with two-byte GBK symbols (degree, plus-minus): decode those bytes as GBK."""
+    chunk = err.object[err.start:err.start + 2]
+    try:
+        return chunk.decode("gbk"), err.start + 2
+    except UnicodeDecodeError:
+        return "�", err.start + 1
+
+
+codecs.register_error("gbk_fix", gbk_fix)
+
+
+def prompts(style: str, limit: int | None, fix_encoding: bool = False):
+    # the runs of 2026-10-08 read the file with errors="replace", so the model saw U+FFFD where the CSV holds GBK bytes
+    rows = list(csv.DictReader(open(ROOT / "data" / "release.csv", encoding="utf-8-sig",
+                                    errors="gbk_fix" if fix_encoding else "replace")))
     col = {"pro": "pro_prompt_en", "geo": "geo_prompt_en"}[style]
     out, seen = [], {}
     for r in rows:
@@ -184,13 +201,14 @@ def spec_merge(run: Path) -> dict:
     return spec
 
 
-def submit(rows, tag: str, messages_for, system: str = SYSTEM) -> str:
-    reqs = [{"custom_id": cid, "params": {"model": MODEL, "max_tokens": MAX_TOKENS, "system": system,
+def submit(rows, tag: str, messages_for, system: str = SYSTEM, model: str | None = None) -> str:
+    model = model or MODEL
+    reqs = [{"custom_id": cid, "params": {"model": model, "max_tokens": MAX_TOKENS, "system": system,
                                          "messages": messages_for(cid, text)}} for cid, text in rows]
     b = client().messages.batches.create(requests=reqs)
     d = ROOT / "runs" / b.id
     d.mkdir(parents=True, exist_ok=True)
-    (d / "meta.json").write_text(json.dumps({"batch": b.id, "tag": tag, "model": MODEL, "n": len(reqs),
+    (d / "meta.json").write_text(json.dumps({"batch": b.id, "tag": tag, "model": model, "n": len(reqs),
                                              "created": time.strftime("%Y-%m-%dT%H:%M:%S")}, indent=1), encoding="utf-8")
     print(b.id, len(reqs), "requests")
     return b.id
@@ -206,7 +224,7 @@ def fetch(batch_id: str) -> None:
     is_spec = tag == "spec"
     d = ROOT / "runs" / batch_id / ("spec" if is_spec else "code")
     d.mkdir(parents=True, exist_ok=True)
-    usage = {"in": 0, "out": 0, "errors": 0}
+    usage = {"in": 0, "out": 0, "errors": 0, "truncated": 0}  # truncated: replies cut at MAX_TOKENS
     for r in c.messages.batches.results(batch_id):
         if r.result.type != "succeeded":
             usage["errors"] += 1
@@ -214,6 +232,7 @@ def fetch(batch_id: str) -> None:
         m = r.result.message
         usage["in"] += m.usage.input_tokens
         usage["out"] += m.usage.output_tokens
+        usage["truncated"] += m.stop_reason == "max_tokens"
         text = "".join(x.text for x in m.content if x.type == "text")
         if is_spec:
             (d / f"{r.custom_id}.txt").write_text(text, encoding="utf-8")
@@ -286,7 +305,8 @@ def repair(run: Path) -> None:
                 {"role": "user", "content": f"{feedback(err)} Fix the program. Same rules. "
                                             "Reply with one Python code block."}]
     print(len(fails), "to repair")
-    submit([(f["id"], text[f["id"]]) for f in fails], f"{style}:repair-of-{run.name}", messages_for)
+    submit([(f["id"], text[f["id"]]) for f in fails], f"{style}:repair-of-{run.name}", messages_for,
+           model=meta["model"])  # the repair uses the generator of the run it repairs
 
 
 def rows_of(run: Path) -> dict:
@@ -316,12 +336,23 @@ def report(base: Path, repaired: Path | None = None) -> None:
         summary(f"after one repair round ({repaired.name})", after)
 
 
+def fix_encoding_rows(style: str, limit: int | None) -> list:
+    """Only the prompts the GBK decode changes (30 pro, 12 geo): the ones the model saw with U+FFFD in them."""
+    fixed = prompts(style, limit, fix_encoding=True)
+    return [f for f, raw in zip(fixed, prompts(style, limit)) if f[1] != raw[1]]
+
+
 def main() -> int:
+    global MODEL
     cmd = sys.argv[1]
+    if "--model" in sys.argv:
+        MODEL = sys.argv[sys.argv.index("--model") + 1]
     if cmd == "submit":
         style = sys.argv[sys.argv.index("--style") + 1] if "--style" in sys.argv else "pro"
         limit = int(sys.argv[sys.argv.index("--limit") + 1]) if "--limit" in sys.argv else None
-        submit(prompts(style, limit), f"{style}:generate", lambda cid, t: [{"role": "user", "content": t}])
+        fix = "--fix-encoding" in sys.argv
+        submit(fix_encoding_rows(style, limit) if fix else prompts(style, limit),
+               f"{style}:generate" + ("-fixenc" if fix else ""), lambda cid, t: [{"role": "user", "content": t}])
     elif cmd == "spec":  # one batch: the overall size read separately from the pro and the geo text of each part
         pro, geo = dict(prompts("pro", None)), dict(prompts("geo", None))
         rows = [(f"{cid}__pro", pro[cid]) for cid in pro] + [(f"{cid}__geo", geo[cid]) for cid in geo]
@@ -349,6 +380,10 @@ def main() -> int:
         ids = [i for i, _ in prompts("pro", None)]
         assert len(ids) == len(set(ids)) == 151, (len(ids), len(set(ids)))
         assert dims_close([30, 10, 20], [10.1, 20, 29.5]) and not dims_close([10, 20, 30], [10, 20, 40])
+        garbled = {s: {cid for cid, t in prompts(s, None) if "�" in t} for s in ("pro", "geo")}
+        fixed = {s: {cid for cid, _ in fix_encoding_rows(s, None)} for s in ("pro", "geo")}
+        assert fixed == garbled and (len(fixed["pro"]), len(fixed["geo"])) == (30, 12), {s: len(v) for s, v in fixed.items()}
+        assert all("�" not in t for _, t in fix_encoding_rows("pro", None)), "GBK decode left U+FFFD in a pro prompt"
         global TIMEOUT_S
         slow = "import cadquery as cq\nfor i in range(30000000):\n    pass\nresult = cq.Workplane().box(1, 1, 1)"
         TIMEOUT_S = 1

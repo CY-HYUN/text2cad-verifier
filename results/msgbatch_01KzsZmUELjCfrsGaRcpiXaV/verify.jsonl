@@ -1,0 +1,82 @@
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L1_1"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 35415.927, "bbox": [30.0, 30.0, 80.0], "faces": 5, "id": "L1_13", "dims": "mismatch", "expected_bbox": [20.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 120023.612, "bbox": [75.698, 75.698, 60.0], "faces": 6, "id": "L1_14", "dims": "mismatch", "expected_bbox": [50.0, 50.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 121625.0, "bbox": [50.0, 50.0, 50.0], "faces": 9, "id": "L1_15", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 54339.735, "bbox": [30.0, 30.0, 105.0], "faces": 5, "id": "L1_18", "dims": "mismatch", "expected_bbox": [30.0, 30.0, 90.0]}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L1_20"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 66575.222, "bbox": [60.0, 60.0, 30.0], "faces": 7, "id": "L1_22", "dims": "match", "expected_bbox": [30.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 126815.453, "bbox": [70.0, 50.0, 50.0], "faces": 4, "id": "L1_23", "dims": "mismatch", "expected_bbox": [50.0, 50.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 38877.209, "bbox": [60.0, 60.0, 15.0], "faces": 3, "id": "L1_26", "dims": "mismatch", "expected_bbox": [45.0, 60.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 32000.0, "bbox": [120.0, 20.0, 37.5], "faces": 10, "id": "L1_27", "dims": "mismatch", "expected_bbox": [20.0, 40.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 119500.0, "bbox": [80.0, 50.0, 30.0], "faces": 9, "id": "L1_32", "dims": "match", "expected_bbox": [30.0, 50.0, 80.0]}
+{"stage": "geometry", "error": "Standard_ConstructionError: Bnd_Box is void", "id": "L1_35"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 36566.371, "bbox": [140.0, 40.0, 10.0], "faces": 9, "id": "L1_39", "dims": "mismatch", "expected_bbox": [10.0, 40.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 17671.459, "bbox": [30.0, 30.0, 40.0], "faces": 6, "id": "L1_40", "dims": "mismatch", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "geometry", "error": "Standard_ConstructionError: Bnd_Box is void", "id": "L1_42"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 36000.0, "bbox": [30.0, 40.0, 60.0], "faces": 5, "id": "L1_46", "dims": "match", "expected_bbox": [30.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 55989.436, "bbox": [40.0, 40.0, 40.0], "faces": 12, "id": "L1_49", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 30082.593, "bbox": [60.0, 20.0, 60.0], "faces": 6, "id": "L1_50", "dims": "match", "expected_bbox": [20.0, 60.0, 60.0]}
+{"stage": "run", "error": "StdFail_NotDone: GC_MakeArcOfCircle::Value() - no result", "id": "L1_52"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L1_53"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 28952.918, "bbox": [50.0, 50.0, 24.0], "faces": 3, "id": "L1_54", "dims": "mismatch", "expected_bbox": [48.0, 50.0, 50.0]}
+{"stage": "run", "error": "ValueError: Nothing to loft", "id": "L1_56"}
+{"stage": "run", "error": "AttributeError: 'function' object has no attribute 'z'", "id": "L1_57"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 102756.26, "bbox": [40.0, 40.0, 135.0], "faces": 4, "id": "L1_9", "dims": "match", "expected_bbox": [40.0, 40.0, 135.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 87502.213, "bbox": [60.0, 40.0, 40.0], "faces": 12, "id": "L2_11", "dims": "match", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "run", "error": "ValueError: More than one wire or face is required", "id": "L2_12"}
+{"stage": "ok", "solids": 29, "valid": true, "volume": 2045.769, "bbox": [31.867, 29.054, 44.201], "faces": 90, "id": "L2_13", "dims": "mismatch", "expected_bbox": [56.05, 56.05, 56.05]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 60314.254, "bbox": [100.0, 100.0, 47.913], "faces": 31, "id": "L2_16", "dims": "mismatch", "expected_bbox": [47.905, 90.0, 90.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 33284.488, "bbox": [40.0, 40.0, 50.0], "faces": 15, "id": "L2_19", "dims": "match", "expected_bbox": [40.0, 40.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27725.666, "bbox": [40.0, 40.0, 40.0], "faces": 11, "id": "L2_22", "dims": "match", "expected_bbox": [40.0, 40.0, 40.0]}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 27682.94, "bbox": [50.0, 50.0, 50.0], "faces": 66, "id": "L2_25", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 85761.614, "bbox": [100.0, 100.0, 57.5], "faces": 36, "id": "L2_26", "dims": "mismatch", "expected_bbox": [60.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 176590.743, "bbox": [78.384, 78.384, 65.0], "faces": 12, "id": "L2_3", "dims": "mismatch", "expected_bbox": [40.0, 80.0, 80.0]}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L2_30"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27625.488, "bbox": [50.0, 50.0, 50.0], "faces": 10, "id": "L2_31", "dims": "mismatch", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "ok", "solids": 14, "valid": true, "volume": 44434.16, "bbox": [100.0, 100.0, 100.0], "faces": 61, "id": "L2_37"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 224934.099, "bbox": [75.0, 75.0, 140.0], "faces": 12, "id": "L2_38", "dims": "mismatch", "expected_bbox": [50.0, 80.0, 120.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 89992.036, "bbox": [60.0, 40.0, 40.0], "faces": 14, "id": "L2_39", "dims": "match", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 206831.853, "bbox": [100.0, 100.0, 55.0], "faces": 18, "id": "L2_4", "dims": "match", "expected_bbox": [55.0, 100.0, 100.0]}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L2_40", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 16780.918, "bbox": [20.0, 20.0, 60.0], "faces": 14, "id": "L2_41", "dims": "mismatch", "expected_bbox": [40.0, 40.0, 60.0]}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L2_42"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 84000.0, "bbox": [60.0, 60.0, 50.0], "faces": 46, "id": "L2_44", "dims": "match", "expected_bbox": [50.0, 60.0, 60.0]}
+{"stage": "run", "error": "TypeError: Workplane.revolve() got an unexpected keyword argument 'angleDecrees'", "id": "L2_45"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 63224.552, "bbox": [50.0, 50.0, 110.0], "faces": 17, "id": "L2_47"}
+{"stage": "geometry", "solids": 1, "valid": false, "volume": 0.0, "bbox": [40.0, 40.0, 40.0], "faces": 2, "error": "shape is not valid (BRepCheck)", "id": "L2_49"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 29620.826, "bbox": [60.0, 20.0, 59.969], "faces": 21, "id": "L2_51"}
+{"stage": "run", "error": "AttributeError: 'Workplane' object has no attribute 'wrapped'", "id": "L2_52"}
+{"stage": "ok", "solids": 2, "valid": true, "volume": 87383.58, "bbox": [60.0, 60.0, 60.0], "faces": 14, "id": "L2_53", "dims": "match", "expected_bbox": [60.0, 60.0, 60.0]}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L2_54"}
+{"stage": "run", "error": "ValueError: Nothing to loft", "id": "L2_55"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 50355.344, "bbox": [104.0, 44.0, 104.0], "faces": 20, "id": "L2_56", "dims": "mismatch", "expected_bbox": [40.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 117966.804, "bbox": [90.0, 90.0, 25.0], "faces": 28, "id": "L2_60", "dims": "match", "expected_bbox": [25.0, 90.0, 90.0]}
+{"stage": "run", "error": "TypeError: AddWire(): incompatible function arguments. The following argument types are supported:\n    1. (self: OCP.OCP.BRepOffsetAPI.BRepOffsetAPI_ThruSections, wire: OCP.OCP.TopoDS.TopoDS_Wire) -> None\n\nInvoked with: <OCP.OCP.BRepOffsetAPI.BRepOffsetAPI_ThruSections object at 0x00000250C7E879B0>, <OCP.OCP.TopoDS.TopoDS_Face object at 0x00000250AC3CE970>", "id": "L2_8"}
+{"stage": "run", "error": "TypeError: Expected three floats, OCC gp_, or 3-tuple", "id": "L2_9"}
+{"stage": "run", "error": "TypeError: Workplane.revolve() got an unexpected keyword argument 'axis'", "id": "L3_1"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_10"}
+{"stage": "run", "error": "TypeError: Workplane.loft() takes from 1 to 4 positional arguments but 22 were given", "id": "L3_11"}
+{"stage": "run", "error": "ValueError: Cannot build face(s): wires not planar", "id": "L3_12"}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L3_14"}
+{"stage": "run", "error": "Standard_ConstructionError: gp_Dir2d() - input vector has zero norm", "id": "L3_15"}
+{"stage": "run", "error": "TypeError: Workplane.loft() takes from 1 to 4 positional arguments but 52 were given", "id": "L3_16"}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L3_17", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_18"}
+{"stage": "safety", "error": "syntax: closing parenthesis ')' does not match opening parenthesis '[' (line 36)", "id": "L3_19"}
+{"stage": "ok", "solids": 46, "valid": true, "volume": 19811.179, "bbox": [100.0, 13.378, 50.0], "faces": 456, "id": "L3_2"}
+{"stage": "run", "error": "AttributeError: 'Solid' object has no attribute 'union'", "id": "L3_20"}
+{"stage": "run", "error": "TypeError: Wire.makePolygon() got an unexpected keyword argument 'forceClose'", "id": "L3_21"}
+{"stage": "ok", "solids": 3, "valid": true, "volume": 23903.259, "bbox": [82.0, 82.0, 85.0], "faces": 51, "id": "L3_22"}
+{"stage": "run", "error": "ValueError: Supported names are ['XY', 'YZ', 'ZX', 'XZ', 'YX', 'ZY', 'front', 'back', 'left', 'right', 'top', 'bottom']", "id": "L3_23"}
+{"stage": "timeout", "error": "no result in 180 s", "id": "L3_24", "first_timeout": true, "recheck_timeout_s": 180}
+{"stage": "run", "error": "TypeError: Expected three floats, OCC gp_, or 3-tuple", "id": "L3_25"}
+{"stage": "run", "error": "ValueError: Cannot find a solid on the stack or in the parent chain", "id": "L3_26"}
+{"stage": "ok", "solids": 9, "valid": true, "volume": 374139.059, "bbox": [135.0, 135.0, 130.0], "faces": 163, "id": "L3_27", "dims": "mismatch", "expected_bbox": [110.0, 110.0, 120.0]}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_29"}
+{"stage": "run", "error": "Standard_ConstructionError: ", "id": "L3_3"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 565823.424, "bbox": [225.0, 100.0, 45.0], "faces": 44, "id": "L3_30", "dims": "mismatch", "expected_bbox": [45.0, 100.0, 150.0]}
+{"stage": "run", "error": "AttributeError: type object 'Shell' has no attribute 'makeLoft'", "id": "L3_4"}
+{"stage": "run", "error": "ValueError: No pending wires present", "id": "L3_5"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 77865.115, "bbox": [98.239, 107.666, 30.0], "faces": 367, "id": "L3_7"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 42651.676, "bbox": [167.069, 119.221, 119.221], "faces": 402, "id": "L3_8", "dims": "mismatch", "expected_bbox": [66.0, 66.0, 80.0]}
+{"stage": "run", "error": "AttributeError: type object 'Shell' has no attribute 'makeLoft'", "id": "L3_9"}

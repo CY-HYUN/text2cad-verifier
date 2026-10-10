@@ -1,0 +1,13 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 179938.667, "bbox": [80.0, 80.0, 45.0], "faces": 15, "id": "L1_56", "dims": "match", "expected_bbox": [45.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 63050.358, "bbox": [50.0, 50.0, 50.0], "faces": 14, "id": "L2_1", "dims": "match", "expected_bbox": [50.0, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 105517.213, "bbox": [79.373, 79.373, 40.0], "faces": 14, "id": "L2_3", "dims": "match", "expected_bbox": [40.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 27625.488, "bbox": [45.826, 50.0, 50.0], "faces": 10, "id": "L2_31", "dims": "match", "expected_bbox": [45.83, 50.0, 50.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 41149.937, "bbox": [30.0, 30.0, 60.0], "faces": 1053, "id": "L2_40", "dims": "match", "expected_bbox": [30.0, 30.0, 60.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 3141592.644, "bbox": [100.0, 282.843, 282.843], "faces": 2, "id": "L3_1", "dims": "match", "expected_bbox": [100.0, 282.84, 282.84]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 252107.501, "bbox": [80.0, 80.0, 60.0], "faces": 25, "id": "L3_12", "dims": "match", "expected_bbox": [60.0, 80.0, 80.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 40000.0, "bbox": [100.0, 50.0, 35.0], "faces": 1826, "id": "L3_14", "dims": "match", "expected_bbox": [35.0, 50.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 20060.849, "bbox": [100.0, 50.0, 53.0], "faces": 10, "id": "L3_2"}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L3_20"}
+{"stage": "geometry", "solids": 1, "valid": true, "volume": -385.769, "bbox": [87.251, 79.701, 43.337], "faces": 6, "error": "non-positive volume", "id": "L3_29"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 121556.879, "bbox": [40.0, 100.0, 40.0], "faces": 492, "id": "L3_6", "dims": "match", "expected_bbox": [40.0, 40.0, 100.0]}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L3_9"}

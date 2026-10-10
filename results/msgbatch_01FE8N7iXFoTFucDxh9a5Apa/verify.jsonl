@@ -1,0 +1,12 @@
+{"stage": "ok", "solids": 1, "valid": true, "volume": 126817.91, "bbox": [69.03, 69.03, 60.0], "faces": 5, "id": "L1_55", "dims": "match", "expected_bbox": [60.0, 69.015, 69.015]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 114332.649, "bbox": [80.0, 60.0, 30.0], "faces": 13, "id": "L1_57", "dims": "match", "expected_bbox": [30.0, 60.0, 80.0]}
+{"stage": "run", "error": "StdFail_NotDone: BRep_API: command not done", "id": "L1_58"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 90335.517, "bbox": [100.0, 100.0, 12.0], "faces": 12, "id": "L1_60", "dims": "match", "expected_bbox": [12.0, 100.0, 100.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 39484.53, "bbox": [100.0, 100.0, 12.232], "faces": 56, "id": "L2_33"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 105288.916, "bbox": [147.487, 80.0, 144.749], "faces": 6, "id": "L3_11"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 64888.966, "bbox": [66.0, 66.0, 30.0], "faces": 674, "id": "L3_13", "dims": "match", "expected_bbox": [30.0, 66.0, 66.0]}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 511643.544, "bbox": [216.0, 216.0, 113.0], "faces": 8, "id": "L3_15"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 22033.517, "bbox": [100.0, 13.5, 50.0], "faces": 951, "id": "L3_2"}
+{"stage": "result", "error": "no variable named result", "id": "L3_24"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 315948.156, "bbox": [100.0, 110.0, 130.0], "faces": 32, "id": "L3_28"}
+{"stage": "ok", "solids": 1, "valid": true, "volume": 123239.237, "bbox": [40.0, 40.0, 100.0], "faces": 5, "id": "L3_6", "dims": "match", "expected_bbox": [40.0, 40.0, 100.0]}
