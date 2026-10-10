@@ -65,6 +65,8 @@ every timeout re-run alone at 180 s, and one repair round by the model that wrot
 |---|---|---|---|---|
 | Opus 5.5 | pro (repeat, 2026-10-08) | `msgbatch_01N7DeL55NxFdKBFA4uaTa3G` | 6 | 2 of 114 |
 | Opus 5.5 | geo (repeat, 2026-10-10) | `msgbatch_01RbRG84vD7XhAvoL9AGWAoe` | 5 | 5 of 115 |
+| Sonnet 5.5 | pro (repeat, 2026-10-10) | `msgbatch_01H27JiMTdtsnCijCNF5qDcn` | 10 | 1 of 112 |
+| Sonnet 5.5 | geo (repeat, 2026-10-10) | `msgbatch_01RKPtLRzbFBTdpNemQN9JM4` | 9 | 6 of 113 |
 
 **Encoding fix.** The released CSV stores ° and ± as GBK bytes inside UTF-8, and the runs read them as U+FFFD, so 30
 pro and 12 geo prompts reached the model with broken characters. `t2c.py submit --fix-encoding` sends only those
@@ -77,9 +79,11 @@ prompts, decoded. Opus 5.5, counted on those prompts only:
 
 **What it shows.**
 
-- *Sonnet 5.5 is close to Opus 5.5.* On geo it matches the two Opus runs (3 failures vs 3 and 5). On pro it failed 8
-  times against Opus's 4 and 6, with 6 of the 8 in L3. One run per model cannot separate that from noise. Its size
-  mismatches (5 and 5) sit inside the Opus range (2 to 8).
+- *Sonnet 5.5 matches Opus 5.5 on sizes and fails to run a little more often.* Over two runs per style it failed 8
+  and 10 times on pro (Opus: 4 and 6) and 3 and 9 times on geo (Opus: 3 and 5). Two runs each is a small sample. Its
+  size mismatches (5 and 1 on pro, 5 and 6 on geo) sit inside the Opus range (2 to 8). 7 of its 8 programs for
+  `L2_40` and its duplicate ran past 180 s, and 2 of the 9 geo-repeat failures are programs the safety check refused
+  (`import cq`, `globals()`).
 - *Haiku 4.5 often writes CadQuery that does not exist.* 83 of 151 pro and 63 of 151 geo programs fail to run.
   52 and 38 of those failures are `AttributeError`, `TypeError` or `NameError`, for example `Workplane.workplaneFromFace`
   or `Sketch.moveTo`; the Opus and Sonnet generation runs have none. One repair round with the error message fixes about a
@@ -98,5 +102,5 @@ prompts, decoded. Opus 5.5, counted on those prompts only:
 
 **Cost** is computed, not read from the billing console: the token counts in each `results/<batch>/usage.json` times
 the Message Batches prices per million input / output tokens (half of list price: Opus 5.5 $2 / $10, Sonnet 5.5
-$1 / $5, Haiku 4.5 $0.50 / $2.50; Anthropic price table as of 2026-09-25). The 11 batches of 2026-10-10 come to
-$4.02; the 7 Opus batches of 2026-10-08, the same way, to $5.14.
+$1 / $5, Haiku 4.5 $0.50 / $2.50; Anthropic price table as of 2026-09-25). The 13 batches of 2026-10-10 come to
+$5.29; the 7 Opus batches of 2026-10-08, the same way, to $5.14.
