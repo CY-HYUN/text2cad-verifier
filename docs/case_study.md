@@ -81,7 +81,7 @@ prompts, decoded. Opus 5.5, counted on those prompts only:
 
 - *Sonnet 5.5 matches Opus 5.5 on sizes and fails to run a little more often.* Over two runs per style it failed 8
   and 10 times on pro (Opus: 4 and 6) and 3 and 9 times on geo (Opus: 3 and 5). Two runs each is a small sample. Its
-  size mismatches (5 and 1 on pro, 5 and 6 on geo) sit inside the Opus range (2 to 8). 7 of its 8 programs for
+  size mismatches (5 and 1 on pro, 5 and 6 on geo) are within or below the Opus range (2 to 8). 7 of its 8 programs for
   `L2_40` and its duplicate ran past 180 s, and 2 of the 9 geo-repeat failures are programs the safety check refused
   (`import cq`, `globals()`).
 - *Haiku 4.5 often writes CadQuery that does not exist.* 83 of 151 pro and 63 of 151 geo programs fail to run.
